@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="EAGLE RS executive eagle obsidian-gold">
+<defs>
+<linearGradient id="metal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFF1B0"/><stop offset=".5" stop-color="#D4AF37"/><stop offset="1" stop-color="#AA7C11"/></linearGradient>
+<radialGradient id="halo"><stop stop-color="#D4AF37" stop-opacity=".26"/><stop offset="1" stop-color="#D4AF37" stop-opacity="0"/></radialGradient>
+<linearGradient id="frame" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFF1B0" stop-opacity=".83"/><stop offset=".55" stop-color="#D4AF37" stop-opacity=".72"/><stop offset="1" stop-color="#AA7C11" stop-opacity=".85"/></linearGradient></defs>
+<circle cx="64" cy="63" r="62" fill="url(#halo)"/>
+<path d="M64 9 99 24 104 68 87 94 64 117 41 94 24 68 29 24Z" fill="#080A0F" fill-opacity=".78" stroke="url(#frame)" stroke-width="1.4"/>
+<path d="M64 17 93 29 97 67 82 89 64 109 46 89 31 67 35 29Z" fill="none" stroke="#D4AF37" stroke-opacity=".17" stroke-width=".8"/>
+<g fill="none" stroke="url(#metal)" stroke-linejoin="round" stroke-linecap="round">
+<path d="M8 14 45 29 76 52 91 56 101 51 119 55 108 63 120 69 109 73 103 67 88 71 78 86 65 96 52 116 52 94 26 105 39 85 16 85 37 72 20 51 48 57 17 31 56 49Z" stroke-width="2.7"/>
+<path d="M8 14 45 29 56 49 76 52 65 71 52 94 37 72 48 57 20 51 M17 31 48 57 56 49 65 71 39 85M26 105 52 94 65 96 78 86 88 71 65 71 48 57M101 51 103 67 91 56 119 55" stroke-width="1.7"/>
+<path d="M45 29 56 49 65 71 78 86 103 67M52 116 65 96 65 71 M21 32 31 43 49 48" stroke-width="1.1" opacity=".72"/>
+</g><g fill="#FFF1B0"><circle cx="45" cy="29" r="3.2"/><circle cx="56" cy="49" r="3.3"/><circle cx="65" cy="71" r="4"/><circle cx="88" cy="71" r="3.2"/><circle cx="78" cy="86" r="2.8"/><circle cx="52" cy="94" r="2.5"/></g>
+<circle cx="105" cy="59" r="2.1" fill="#080A0F"/>
+</svg>
