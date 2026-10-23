@@ -1,0 +1,52 @@
+/* v3.13.0 · professional disclosure controls. Shape is CSS-drawn, not a font glyph. */
+html[data-theme] .platform-group .group-trigger{
+  min-height:30px!important;align-items:center!important;
+  border-radius:8px!important;gap:5px!important;padding:4px 5px!important;
+  cursor:pointer!important;
+}
+html[data-theme] .platform-group .group-trigger .caret{
+  box-sizing:border-box!important;width:17px!important;height:17px!important;
+  flex:0 0 17px!important;display:inline-grid!important;place-items:center!important;
+  border:1px solid var(--ui-border)!important;border-radius:6px!important;
+  background:var(--ui-panel)!important;color:var(--ui-muted)!important;
+  transition:background .14s ease,border-color .14s ease!important;
+}
+html[data-theme] .platform-group .group-trigger .caret::before{
+  content:"";display:block;width:5px;height:5px;border-right:1.7px solid currentColor;
+  border-bottom:1.7px solid currentColor;transform:rotate(-45deg);
+  transition:transform .14s ease;color:var(--ui-muted);
+}
+html[data-theme] .platform-group .group-trigger[aria-expanded="true"] .caret::before{
+  transform:rotate(45deg);
+}
+html[data-theme] .platform-group .group-trigger:hover .caret,
+html[data-theme] .platform-group .group-trigger:focus-visible .caret{
+  color:var(--ui-accent)!important;background:var(--ui-hover)!important;border-color:var(--ui-accent)!important;
+}
+html[data-theme] .platform-group .group-trigger:hover .caret::before,
+html[data-theme] .platform-group .group-trigger:focus-visible .caret::before{
+  color:var(--ui-accent)!important;
+}
+html[data-theme] .background-drawer>summary .drawer-caret{
+  width:16px;height:16px;flex:0 0 16px;display:inline-grid;place-items:center;
+  border:1px solid var(--ui-border);border-radius:5px;background:var(--ui-panel);
+  font-size:0!important;transform:none!important;transition:background .14s ease,border-color .14s ease!important;
+}
+html[data-theme] .background-drawer>summary .drawer-caret::before{
+  content:"";width:5px;height:5px;display:block;border-right:1.7px solid currentColor;
+  border-bottom:1.7px solid currentColor;transform:rotate(-45deg);
+  transition:transform .14s ease;
+}
+html[data-theme] .background-drawer[open]>summary .drawer-caret::before{transform:rotate(45deg)}
+html[data-theme] .background-drawer>summary:hover .drawer-caret,
+html[data-theme] .background-drawer>summary:focus-visible .drawer-caret{
+  border-color:var(--ui-accent);background:var(--ui-hover);
+}
+/* Keep touch/click area generous even with the compact account rail. */
+html[data-theme] .platform-group .side-header{min-height:38px!important;height:auto!important;align-items:center!important}
+@media (prefers-reduced-motion:reduce){
+ html[data-theme] .platform-group .group-trigger .caret,
+ html[data-theme] .platform-group .group-trigger .caret::before,
+ html[data-theme] .background-drawer>summary .drawer-caret,
+ html[data-theme] .background-drawer>summary .drawer-caret::before{transition:none!important}
+}

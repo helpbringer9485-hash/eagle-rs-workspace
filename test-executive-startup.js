@@ -1,0 +1,54 @@
+'use strict';
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const path=require('node:path');
+const base=__dirname;
+const html=fs.readFileSync(path.join(base,'index.html'),'utf8');
+const css=fs.readFileSync(path.join(base,'executive-startup.css'),'utf8');
+const renderer=fs.readFileSync(path.join(base,'renderer.js'),'utf8');
+const main=fs.readFileSync(path.join(base,'main.js'),'utf8');
+const pkg=require('./package.json');
+assert.equal(pkg.version,'3.25.0');
+for(const id of ['lockOverlay','lockClock','lockCalendar','lockOverviewTitle','unlockPhrase','unlockNow','firstTimeSetup','firstPassphrase','recoveryForm','recoveryMode','statDrawer','statDrawerCountdown','statDrawerProgress','popupTimeoutMinutes'])assert(html.includes(`id="${id}"`),`missing ${id}`);
+for(const word of ['Unified Executive Communications','Independent browser profiles','Local security','Gemini','Other recovery options','Closes automatically'])assert(html.includes(word),`missing visible content ${word}`);
+assert(html.indexOf('executive-startup.css')>html.indexOf('theme-engine.css'),'premium theme override must load last');
+assert(css.includes('prefers-reduced-motion:reduce'));
+assert(css.includes('rgba(8,10,15,.93)'));
+for(const part of ['#D4AF37','lock-card','lock-clock'])assert(css.includes(part));
+assert(renderer.includes('function scheduleTransient('));
+assert(renderer.includes('if(name===\'statDrawer\')'));
+assert(renderer.includes('function popupTimeoutMs()'));
+assert(renderer.includes('scheduleTransient(\'statDrawer\')'));
+assert(renderer.includes('scheduleTransient(\'accountMenu\''));
+assert(renderer.includes('clearAllTransients();refreshLockClock();'));
+assert(renderer.includes('function refreshLockClock()'));
+assert(renderer.includes('setupPopupLifetimePreferences()'));
+assert(!renderer.includes("setTimeout(()=>{$('lockOverlay').hidden=true"),'never auto-dismiss the lock screen');
+assert(!renderer.includes("setTimeout(()=>{$('settingsModal').classList.remove('show')"),'never auto-dismiss settings form');
+assert(main.includes('popupTimeoutMinutes:1'));
+assert(main.includes('[1,2,3].includes(input.ui?.popupTimeoutMinutes)'));
+assert(main.includes('persist:mm3-')||main.includes('persist:mm3-${a.id}'));
+assert(main.includes('persist:tg_session_'));
+assert(!main.includes('clearStorageData('),'do not erase cookies or login partitions');
+// Exercise the real popup controller with a fake clock (no Electron or customer data).
+const vm=require('node:vm');
+let clockNow=0,nextInterval=0;
+const intervals=new Map();
+const nodes=new Map();
+function node(id){if(!nodes.has(id))nodes.set(id,{id,hidden:false,open:false,style:{width:''},classList:{remove(){},add(){}},matches(){return false},contains(){return false},textContent:'',setAttribute(){}});return nodes.get(id);}
+const program=renderer.slice(renderer.indexOf('const transientTimers=new Map();'),renderer.indexOf('async function busy('));
+const context={state:{ui:{popupTimeoutMinutes:1}},$:(id)=>node(id),document:{hidden:false,activeElement:null},performance:{now:()=>clockNow},Date,Intl,
+ setInterval:(cb)=>{const id=++nextInterval;intervals.set(id,cb);return id},clearInterval:(id)=>intervals.delete(id),clearTimeout(){},setTimeout(){}};
+vm.runInNewContext(program+'\n globalThis.__testApi={scheduleTransient,closeTransient,popupTimeoutMs};',context);
+const api=context.__testApi;
+assert.equal(api.popupTimeoutMs(),60000);
+api.scheduleTransient('statDrawer');
+assert.match(node('statDrawerCountdown').textContent,/Closes in 1 min/);
+clockNow=60001;for(const [,fn] of [...intervals])fn();
+assert.equal(node('statDrawer').hidden,true,'drawer should auto-dismiss after 60 sec');
+for(const [minutes,expected] of [[2,120000],[3,180000]]){context.state.ui.popupTimeoutMinutes=minutes;assert.equal(api.popupTimeoutMs(),expected);}
+context.state.ui.popupTimeoutMinutes=1;
+node('profileMore').open=true;api.scheduleTransient('accountMenu');clockNow+=60002;for(const [,fn] of [...intervals])fn();
+assert.equal(node('profileMore').open,false,'account popup should auto-dismiss after 60 sec');
+assert.equal(node('lockOverlay').hidden,false,'timers must not dismiss lock screen');
+console.log('EAGLE RS v3.14 executive lock, popup lifecycle, persistence, and no-session-wipe checks passed.');

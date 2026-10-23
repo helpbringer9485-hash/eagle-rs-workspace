@@ -1,0 +1,15 @@
+'use strict';
+const fs=require('node:fs');const assert=require('node:assert/strict');
+const html=fs.readFileSync('index.html','utf8'),js=fs.readFileSync('renderer.js','utf8'),css=fs.readFileSync('compact-rail.css','utf8'),main=fs.readFileSync('main.js','utf8'),pkg=require('./package.json');
+assert.equal(pkg.version,'3.25.0');
+for(const x of ['backgroundSessionDetails','backgroundSessionSummary','toggleArrangeMode','groupWa','groupSignal','groupTelegram','waList','signalList','telegramList','startWhatsAppAll','stopWhatsAppAll','lowMemoryMode'])assert.match(html,new RegExp('id="'+x+'"'));
+assert.match(html,/href="compact-rail.css"/);
+assert.match(css,/height:30px!important/);assert.match(css,/width:20px!important/);
+assert.match(css,/\.account-list\.is-collapsed\{display:none!important\}/);
+assert.match(js,/await window\.desktop\.save\(state\);\s*\}\s*catch\(error\)/);
+assert.match(js,/applyCompactRailSettings\(\)/);assert.match(js,/updateRailSelectedState\(\)/);
+assert.match(js,/await delay\(1400\)/);
+assert.doesNotMatch(js,/sendSync\(/);assert.doesNotMatch(main,/clearStorageData\s*\(/);
+assert.match(main,/backgroundDrawerOpen/);assert.match(main,/arrangeMode/);assert.match(main,/lowMemoryMode/);assert.match(js,/Low RAM mode/);
+const legacy=fs.readFileSync('test-check.js','utf8');assert.match(legacy,/partition/);
+console.log('EAGLE RS v3.10 compact rail, no-wipe persisted partitions, instant collapses and source checks passed.');

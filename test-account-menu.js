@@ -1,0 +1,18 @@
+'use strict';
+const fs=require('node:fs');const assert=require('node:assert/strict');
+const html=fs.readFileSync('index.html','utf8');
+const js=fs.readFileSync('renderer.js','utf8');
+const css=fs.readFileSync('account-menu-layer.css','utf8');
+const pkg=require('./package.json');
+assert.equal(pkg.version,'3.25.0');
+for(const id of ['profileMore','profileMoreMenu','renameCurrent','followCurrent','quickReply','pauseCurrent'])assert.ok(html.includes(`id="${id}"`),id);
+assert.ok(html.includes('popover="manual"'),'Popup uses Chromium top layer');
+assert.ok(js.includes('menu.showPopover()'),'Popup uses popover API');
+assert.ok(js.includes('positionAccountMenu'),'Popup positions beside button');
+assert.ok(js.includes('closeAccountMenu'),'Popup has a close handler');
+assert.ok(css.includes(':popover-open'),'CSS honors popover open state');
+assert.ok(css.includes('z-index:2147483647'),'Popup is above the rest of the app');
+assert.ok(html.includes('account-menu-layer.css'),'Popup stylesheet included');
+assert.ok(/persist:mm3-/.test(js),'Legacy WhatsApp session partitions unchanged');
+assert.ok(/persist:tg_session_/.test(js),'Telegram partitions unchanged');
+console.log('EAGLE RS v3.14.0 account menu top-layer regression checks passed.');

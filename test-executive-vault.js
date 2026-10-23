@@ -1,0 +1,15 @@
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs');
+const html=fs.readFileSync('index.html','utf8'),css=fs.readFileSync('executive-vault.css','utf8');
+const r=fs.readFileSync('renderer.js','utf8'),main=fs.readFileSync('main.js','utf8');
+const section=html.split('<div id=\"lockOverlay\"')[1].split('<div class=\"overlay\" id=\"settingsModal\"')[0];
+for(const cls of ['lock-master-container','lock-hero-panel','lock-vault-panel','lock-bottom-line'])assert(section.includes(cls),cls);
+for(const id of ['firstTimeSetup','existingLock','lockClock','lockCalendar','unlockPhrase','unlockNow','forgotPass','recoveryForm','unlockResult','showRecoveryCodes'])assert(section.includes('id=\"'+id+'\"'),id);
+assert(css.includes('grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)'));
+assert(css.includes('@media(max-width:860px)'));
+assert(css.includes('prefers-reduced-motion:reduce'));
+assert(html.includes('href=\"executive-vault.css\"'));
+assert(r.includes('securityUnlock(')&&r.includes('function refreshLockClock()'));
+assert(main.includes('persist:mm3-')&&main.includes('persist:tg_session_'));
+assert(!main.includes('clearStorageData('));
+console.log('v3.16 executive vault lock layout, original unlock & recovery paths, responsive styles, saved login identifiers verified.');

@@ -1,0 +1,37 @@
+'use strict';
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const html=fs.readFileSync('index.html','utf8');
+const js=fs.readFileSync('renderer.js','utf8');
+const css=fs.readFileSync('clean-workspace.css','utf8');
+const main=fs.readFileSync('main.js','utf8');
+const pkg=require('./package.json');
+const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]);
+const allIds=new Set(ids);
+assert.equal(pkg.version,'3.25.0');
+assert.equal(ids.length,allIds.size,'duplicate DOM ids can break a live account switch');
+for(const id of ['waList','telegramList','signalList','startWhatsAppAll','stopWhatsAppAll','startAll','openTelegramAccounts','profileMore','tabUnread','statMissedCalls','callBadge','queueBadge','views','signalDock','lockOverlay']){
+ assert.ok(allIds.has(id),`required UI control missing: ${id}`);
+}
+assert.ok(!allIds.has('quickMissedCalls'),'duplicate sidebar call shortcut should not render');
+assert.ok(!allIds.has('callSidebarBadge'),'duplicate sidebar call badge should not render');
+assert.match(html,/<details id="advancedSessionTools"/);
+assert.match(html,/<details class="profile-more"/);
+assert.match(css,/\.profile-more-menu/);
+assert.match(css,/\.session-compact/);
+assert.match(js,/function setUiText\(id,value\)/);
+assert.match(js,/setUiText\('statLoaded'/);
+assert.match(js,/setUiText\('tabUnread'/);
+assert.match(js,/console\.error\('\[EAGLE RS\] Account selection failed:'/);
+assert.match(js,/for\(const \[other,view\] of views\)view\.container\.classList\.toggle\('active',other===id\)/);
+assert.match(js,/async function startWhatsappBatch/);
+assert.match(js,/window\.desktop\.save\(state\)/);
+assert.match(js,/\/\/ Destroy only the webview renderer; the on-disk persistent partition stays untouched/);
+assert.match(main,/backgroundThrottling:false/);
+assert.match(main,/win\.on\('close',e=>\{if\(!isQuitting/);
+assert.match(main,/win\.on\('hide',\(\)=>appLock\(\)\)/);
+assert.doesNotMatch(main,/clearStorageData\s*\(/);
+assert.doesNotMatch(main,/clearCache\s*\(/);
+assert.doesNotMatch(js,/sendSync\(/);
+assert.ok(!html.includes('Local Signal accounts are all connected'),'no false Signal login claims');
+console.log('EAGLE RS v3.9 compact UI, safe status updates, always-on sessions, Signal disclosure, and no-login-wipe checks passed.');

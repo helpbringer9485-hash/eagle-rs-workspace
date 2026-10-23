@@ -1,0 +1,57 @@
+/* EAGLE RS 3.22 — simple, honest personal account linking and recovery. */
+#settingsModal .recovery-settings{background:transparent!important;border:none!important;padding:0!important}
+#settingsModal .recovery-settings > h3,
+#settingsModal .recovery-settings > p,
+#settingsModal .recovery-settings > label,
+#settingsModal .recovery-settings > #recoveryCurrentPass,
+#settingsModal .recovery-settings > .microsoft-recovery-card,
+#settingsModal .recovery-settings > details{display:none!important}
+.simple-auth-card{background:var(--ui-solid,#12171d);border:1px solid var(--ui-border,#54442c);border-radius:17px;padding:19px;margin:15px 0;color:var(--ui-text,#f8fafc);box-shadow:0 12px 26px #0002}
+.simple-auth-heading{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.simple-auth-seal{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:var(--ui-hover,#2b241c);color:var(--ui-accent,#eac47e);border:1px solid var(--ui-border,#6a573c)}
+.simple-auth-heading h3{font-size:17px!important;font-weight:760!important;color:var(--ui-text,#fff)!important;margin:0 0 4px!important}
+.simple-auth-heading p{font-size:12px!important;color:var(--ui-muted,#b5b5bd)!important;margin:0!important}
+.simple-auth-status{padding:11px 13px;margin:0 0 14px;border:1px solid var(--ui-border,#54442c);background:var(--ui-input,#0d0e12);border-radius:10px;font-size:12px;line-height:1.5;color:var(--ui-text,#eee)}
+.simple-auth-pass-wrap{margin:0 0 12px}
+.simple-auth-pass-wrap label{display:block;margin:0 0 6px;color:var(--ui-muted,#aaa);font-size:12px}
+.simple-auth-pass-wrap input{width:100%;padding:11px 13px;border-radius:9px;box-sizing:border-box}
+.simple-auth-providers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.simple-auth-provider{display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 9px!important;border-radius:10px!important;font-size:13px!important;font-weight:700;min-height:45px;white-space:normal}
+.simple-auth-provider:disabled{opacity:.6;cursor:not-allowed}
+.simple-auth-icon{width:21px;height:21px;flex-shrink:0;display:block}
+.simple-auth-info{font-size:11px;color:var(--ui-muted,#a3a3aa)!important;margin:10px 0 0!important;line-height:1.6!important}
+.simple-auth-flow{margin-top:16px;border-top:1px solid var(--ui-border,#333);padding-top:14px}
+.simple-auth-flow[hidden],.simple-auth-pass-wrap[hidden],.simple-auth-provider[hidden],.simple-auth-recover[hidden]{display:none!important}
+.simple-auth-code{display:block;max-width:max-content;padding:12px 15px;margin:10px 0;border:1px dashed var(--ui-accent,#d4af37);background:var(--ui-input,#090c10);border-radius:9px;color:var(--ui-text,#fff);letter-spacing:.14em;font-size:19px;font-weight:800;user-select:all}
+.simple-auth-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:9px}
+.simple-auth-actions button{font-size:12px!important;padding:9px 12px!important}
+.simple-auth-recover{padding:14px;border:1px solid var(--ui-border,#333);border-radius:11px;background:var(--ui-input,#0d1016);margin:14px 0}
+.simple-auth-recover input{display:block;width:100%;box-sizing:border-box;margin:8px 0;padding:11px 12px}
+.simple-auth-recover p{font-size:12px;line-height:1.5;color:var(--ui-muted,#bbb)}
+.simple-auth-recover pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;line-height:1.6;padding:12px;border:1px solid var(--ui-border,#333);background:var(--ui-canvas,#050507);border-radius:8px;user-select:all}
+.simple-auth-recover button{padding:10px 14px!important}
+.simple-auth-secondary{margin-top:14px;font-size:12px;color:var(--ui-muted,#aaa)}
+.simple-auth-secondary summary{cursor:pointer;padding:8px 0;color:var(--ui-accent,#eac47e)!important}
+.simple-auth-secondary button{font-size:12px}
+#simpleLockProviders{width:100%;margin-top:13px;padding-top:12px;border-top:1px solid rgba(212,175,55,.2)}
+#simpleLockProviders h4{font-size:12px;font-weight:700;color:var(--ui-muted,#b8ae9d);margin:4px 0 10px;text-align:center}
+#simpleLockProviders button{width:100%;margin:5px 0;display:flex;gap:9px;justify-content:center;align-items:center;box-sizing:border-box}
+#simpleLockProviders .simple-auth-icon{width:18px;height:18px}
+#simpleLockFeedback{font-size:11px;color:var(--ui-muted,#bbb);line-height:1.5;margin-top:8px;text-align:center;min-height:0}
+#simpleLockRecovery{width:100%;margin-top:10px}
+#simpleLockRecovery input{width:100%;box-sizing:border-box}
+#simpleLockRecovery code{letter-spacing:.09em}
+#simpleLockRecovery h4{margin:0;color:var(--ui-text,#fff)}
+#simpleLockRecovery button{width:100%;margin:5px 0}
+#simpleLockRecovery .simple-auth-actions{display:flex}
+#simpleLockRecovery .simple-auth-actions button{width:auto;flex:1}
+#simpleLockCodes{white-space:pre-wrap}
+#existingLock #microsoftQuickRecover,#existingLock #forgotPass{display:none!important}
+@media(max-width:620px){.simple-auth-providers{grid-template-columns:1fr}.simple-auth-card{padding:14px}}
+@media(prefers-reduced-motion:reduce){.simple-auth-provider{transition:none!important}}
+
+.simple-auth-code[hidden],.simple-auth-recover[hidden],#simpleLockCodesBlock[hidden],#simpleLockNewPassword[hidden]{display:none!important}
+
+#simpleLockResetMicrosoft,#simpleLockResetGoogle{font-size:11px!important;text-decoration:underline;opacity:.84;padding:6px!important;border:0!important;background:transparent!important;color:var(--ui-muted,#c5b08a)!important}
+
+.simple-auth-providers:has(#simpleAuthGoogle[hidden]){grid-template-columns:1fr}

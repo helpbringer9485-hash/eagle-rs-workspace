@@ -1,0 +1,4 @@
+{
+  "clientId": "369b5df3-38a3-4141-adb2-b806e229a6ff",
+  "notes": "EAGLE RS personal Microsoft public client ID, supplied by app owner. This is not a password or a secret. Personal Microsoft accounts supported; public/device-code flows must be enabled. If revoked or disabled, recovery cannot start."
+}

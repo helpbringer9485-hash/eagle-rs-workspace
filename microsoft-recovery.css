@@ -1,0 +1,46 @@
+.microsoft-recovery-card{margin:18px 0;padding:18px;border:1px solid rgba(212,175,55,.33);border-radius:14px;background:linear-gradient(145deg,rgba(212,175,55,.07),rgba(12,16,25,.2));color:var(--text-primary,#F8FAFC)}
+.ms-card-heading{display:flex;align-items:center;gap:13px;margin-bottom:11px}
+.ms-card-heading h4{font-size:16px;line-height:1.3;margin:0 0 4px}
+.ms-card-heading small{font-size:11px;color:var(--text-secondary,#94A3B8)}
+.ms-provider-icon{display:grid;place-items:center;width:42px;height:42px;border:1px solid rgba(212,175,55,.45);border-radius:11px;color:#E5C158;background:rgba(212,175,55,.12);font-size:24px;flex:none}
+.microsoft-recovery-card p{font-size:12px;line-height:1.55;color:var(--text-secondary,#94A3B8)}
+.ms-connection-status{font-size:12px;line-height:1.5;margin:12px 0;padding:12px;border:1px solid rgba(212,175,55,.23);border-radius:9px;background:var(--bg-panel,#0F131D);overflow-wrap:anywhere}
+.ms-primary-actions{display:flex;flex-wrap:wrap;gap:8px}
+.ms-primary-actions button{min-height:35px;flex-grow:1}
+.ms-device-flow,.ms-recovery-locked{padding:14px 16px;border:1px solid rgba(212,175,55,.25);border-radius:11px;background:rgba(212,175,55,.055);margin:12px 0}
+.ms-device-code{font-size:clamp(18px,2vw,25px);font-family:ui-monospace,SFMono-Regular,Consolas,monospace;display:block;letter-spacing:2px;color:var(--accent-color,#D4AF37);text-align:center;margin:14px 0}
+.ms-backup-check{display:flex;gap:10px;align-items:flex-start;font-size:12px;line-height:1.4;margin:12px 0}
+.ms-backup-check input{flex:none;margin-top:2px}
+.ms-recovery-locked strong{font-size:13px}
+.ms-recovery-locked button{min-height:36px}
+#recoveryCodeRow[hidden],#microsoftRecoveryPanel[hidden],#microsoftConnectInstructions[hidden]{display:none!important}
+@media(max-width:700px){.microsoft-recovery-card{padding:12px}.ms-primary-actions button{width:100%}}
+
+.ms-advanced-recovery{margin:14px 0 0;padding:10px 13px;border:1px solid rgba(212,175,55,.2);border-radius:10px}.ms-advanced-recovery summary{cursor:pointer;font-size:12px;color:var(--text-secondary,#94A3B8)}
+
+/* Guided public OAuth app setup: only appears when the publisher ID is missing. */
+.ms-activation{border:1px solid rgba(212,175,55,.35);border-radius:12px;background:rgba(212,175,55,.06);padding:15px;margin:12px 0}
+.ms-activation[hidden]{display:none!important}
+.ms-activation h4{margin:0 0 10px;font-size:15px}
+.ms-activation ol{padding-left:18px;margin:8px 0 14px;font-size:12px;line-height:1.7;color:var(--text-secondary,#94A3B8)}
+.ms-activation label{display:block;margin-bottom:7px;font-size:12px}
+.ms-activation input{width:100%;box-sizing:border-box;font:13px ui-monospace,Consolas,monospace;margin-bottom:11px;min-height:42px}
+.ms-activation .tool-row{display:flex;flex-wrap:wrap;gap:8px}
+.ms-activation .tool-row button{flex:1 1 160px}
+
+/* The master-passphrase confirmation is adjacent to Microsoft activation,
+   not hidden in a separate scrolled section as in v3.19.1. */
+.ms-master-confirm{margin:12px 0 14px;padding:12px 14px;border:1px solid rgba(212,175,55,.35);border-radius:11px;background:rgba(212,175,55,.045)}
+.ms-master-confirm label{display:block;font-size:12px;color:var(--text-primary,#f8fafc);margin-bottom:8px}
+.ms-master-confirm input{width:100%;box-sizing:border-box;min-height:42px;margin:0}
+.ms-master-confirm .security-note{margin:8px 0 0;line-height:1.5}
+.ms-primary-actions button[hidden]{display:none!important}
+.ms-activation .tool-row button{flex:0 1 auto}
+
+/* Easy recovery: primary action is visible, advanced recovery options are tucked away. */
+.ms-quick-recover{display:block;width:100%;margin:12px 0 2px;border-radius:10px;min-height:41px}
+.ms-quick-recover[hidden],.ms-linked-badge[hidden],.ms-advanced-recovery[hidden],.ms-backup-disclosure[hidden],.ms-master-confirm[hidden]{display:none!important}
+.ms-linked-badge{display:flex;justify-content:center;align-items:center;min-height:42px;padding:9px 14px;border:1px solid rgba(16,185,129,.45);background:rgba(16,185,129,.07);border-radius:11px;color:#a9f3d3;font-size:13px;font-weight:700;width:100%}
+.ms-backup-disclosure{margin-top:16px;padding:12px 14px;border:1px solid var(--border-color,rgba(212,175,55,.23));border-radius:11px}
+.ms-backup-disclosure summary{cursor:pointer;font-weight:700;color:var(--text-primary,#f8fafc);font-size:13px;list-style-position:inside}
+.ms-backup-disclosure summary:focus-visible,.ms-advanced-recovery summary:focus-visible{outline:2px solid var(--accent-color,#d4af37);outline-offset:3px}

@@ -1,0 +1,175 @@
+/* EAGLE RS v3.16 -- premium two-column Executive Vault.
+   All new selectors are scoped to the actual lock overlay and never enter
+   third-party messaging webviews. Password and recovery scripts are unchanged. */
+html[data-theme] .lock-overlay {
+  background:radial-gradient(ellipse at 51% 35%,rgba(31,32,32,.26),transparent 62%),rgba(4,6,10,.94)!important;
+  backdrop-filter:blur(30px) saturate(165%)!important;
+  -webkit-backdrop-filter:blur(30px) saturate(165%)!important;
+  padding:clamp(12px,3vh,30px)!important;
+  overflow:auto!important;
+  overscroll-behavior:contain;
+}
+html[data-theme] .lock-master-container {
+  /* win over legacy lock-card and executive-startup fixed sizing */
+  width:min(1060px,calc(100vw - 36px))!important;
+  max-width:1060px!important;
+  min-height:min(610px,calc(100vh - 44px));
+  height:auto!important;
+  max-height:calc(100vh - 36px)!important;
+  margin:auto!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)!important;
+  grid-template-rows:minmax(0,1fr) auto;
+  gap:0!important;
+  overflow:auto!important;
+  align-items:stretch!important;
+  padding:0!important;
+  isolation:isolate;
+  position:relative;
+  border-radius:19px!important;
+  border:1px solid rgba(212,175,55,.46)!important;
+  color:#F8FAFC!important;
+  background:rgba(12,16,25,.96)!important;
+  box-shadow:0 28px 90px rgba(0,0,0,.82),0 0 29px rgba(212,175,55,.23),inset 0 0 0 1px rgba(255,241,176,.07)!important;
+}
+html[data-theme] .lock-master-container::before {
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:10;
+  border-radius:19px;
+  border:2px solid transparent;
+  background:linear-gradient(116deg,rgba(255,241,176,.80),rgba(212,175,55,.22) 26%,transparent 42%,transparent 63%,rgba(212,175,55,.28) 86%,rgba(255,241,176,.60)) border-box;
+  mask:linear-gradient(#fff 0 0) padding-box,linear-gradient(#fff 0 0);
+  mask-composite:exclude;
+}
+.lock-master-container .lock-hero-panel{
+  position:relative;grid-column:1;grid-row:1;min-width:0;
+  padding:clamp(24px,3.2vw,46px) clamp(23px,3.2vw,44px);
+  background:
+    radial-gradient(circle at 11% 10%,rgba(212,175,55,.11),transparent 39%),
+    repeating-linear-gradient(116deg,transparent 0 61px,rgba(212,175,55,.018) 62px 63px,transparent 64px 118px),
+    linear-gradient(135deg,rgba(14,19,29,.99),rgba(10,13,21,.98) 65%,rgba(21,21,22,.96));
+  border-right:1px solid rgba(212,175,55,.24);
+  display:flex;flex-direction:column;justify-content:center;
+}
+.lock-master-container .lock-hero-panel::before{
+  content:'';position:absolute;pointer-events:none;inset:8px;
+  border:1px solid rgba(212,175,55,.055);border-radius:13px;
+}
+.lock-master-container .lock-hero{
+  display:flex!important;flex-direction:column!important;
+  align-items:flex-start!important;justify-items:unset!important;
+  text-align:left!important;gap:8px!important;
+  padding:0 0 19px!important;margin:0 0 16px!important;
+  border-bottom:1px solid rgba(212,175,55,.21)!important;
+  background:transparent!important;
+}
+.lock-master-container .lock-hero-emblem{
+  width:82px!important;height:82px!important;margin:0 0 2px!important;
+  display:grid;place-items:center;
+  filter:drop-shadow(0 0 22px rgba(212,175,55,.45));
+  animation:eagle-glow 4.2s ease-in-out infinite!important;
+}
+.lock-master-container .lock-hero-emblem img{width:80px!important;height:80px!important;object-fit:contain!important;}
+html[data-theme] .lock-master-container .lock-hero h2 {
+  font-size:clamp(25px,2.2vw,33px)!important;line-height:1.16!important;
+  font-weight:800!important;letter-spacing:.025em!important;margin:3px 0 0!important;
+  color:#F8FAFC!important;
+}
+.lock-master-container .lock-hero h2 span{
+  background:linear-gradient(120deg,#FFF1B0,#D4AF37 58%,#AA7C11);
+  color:transparent!important;-webkit-background-clip:text;background-clip:text;
+}
+html[data-theme] .lock-master-container .lock-mission {
+  color:#E5C158!important;font-size:11px!important;
+  letter-spacing:.11em!important;text-transform:uppercase;font-weight:750!important;
+}
+html[data-theme] .lock-master-container .lock-tagline {
+  max-width:42ch!important;margin:4px 0 0!important;
+  font-size:12px!important;line-height:1.7!important;color:#BCC5D2!important;
+  text-align:left!important;
+}
+.lock-master-container .lock-badge{font-size:10px!important;align-self:flex-start!important;}
+.lock-master-container .lock-overview{
+  min-width:0;max-width:none!important;display:block!important;
+  padding:0!important;border:0!important;border-radius:0!important;
+  background:transparent!important;
+}
+.lock-master-container .lock-overview h3{
+  font-size:15px!important;color:#F8FAFC!important;line-height:1.35;margin:0 0 8px!important;
+}
+html[data-theme] .lock-master-container .lock-overview p{
+  color:#ABB6C5!important;text-align:left!important;font-size:11px!important;line-height:1.55!important;margin:0 0 10px!important;
+}
+.lock-master-container .lock-feature-list{margin:13px 0 10px!important;gap:9px!important;}
+.lock-master-container .lock-feature-list li{
+  padding:10px 12px!important;background:rgba(8,10,15,.48)!important;
+  border:1px solid rgba(212,175,55,.13)!important;border-radius:9px!important;
+}
+.lock-master-container .lock-feature-list strong{color:#E5C158!important;font-size:11px!important;}
+.lock-master-container .lock-feature-list span{color:#AAB4C2!important;font-size:10px!important;line-height:1.45!important;}
+.lock-master-container .lock-vault-panel{
+  grid-column:2;grid-row:1;
+  border:0!important;border-radius:0!important;min-width:0;
+  padding:clamp(22px,3.2vw,44px)!important;
+  background:linear-gradient(160deg,rgba(8,11,18,.99),rgba(11,15,24,.99))!important;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.lock-master-container .lock-clock-box{
+  margin:0 0 34px!important;background:linear-gradient(128deg,rgba(212,175,55,.095),rgba(8,10,15,.77))!important;
+  border-color:rgba(212,175,55,.37)!important;padding:20px!important;
+  box-shadow:inset 0 0 14px rgba(0,0,0,.32),0 0 12px rgba(212,175,55,.08);
+}
+.lock-master-container .lock-clock-label{font-size:10px!important;color:#E5C158!important;}
+.lock-master-container #lockClock{font-family:Consolas,'Segoe UI',sans-serif;font-size:clamp(23px,2.2vw,34px)!important;white-space:nowrap;}
+.lock-master-container #lockCalendar{font-size:12px!important;}
+.lock-master-container .lock-clock-symbol{font-size:32px!important;}
+.lock-master-container .lock-form-title{font-size:19px!important;margin-bottom:7px!important;}
+html[data-theme] .lock-master-container .lock-form-caption{
+  font-size:12px!important;line-height:1.6!important;
+  color:#B5BECD!important;max-width:43ch!important;
+  margin:0 0 20px!important;
+}
+.lock-master-container .passphrase-label{font-size:12px!important;color:#F8FAFC!important;margin-bottom:8px!important;}
+html[data-theme] .lock-master-container input:not([type=checkbox]),html[data-theme] .lock-master-container select{
+  background:#06080C!important;border:1px solid rgba(212,175,55,.35)!important;
+  color:#F8FAFC!important;border-radius:9px!important;
+  min-height:47px!important;font-size:13px!important;
+  padding:12px 14px!important;
+}
+html[data-theme] .lock-master-container input:not([type=checkbox]):focus{border-color:#E5C158!important;box-shadow:0 0 0 3px rgba(212,175,55,.15)!important;}
+.lock-master-container .lock-show-password{margin:9px 0 16px!important;min-height:20px;display:flex!important;justify-content:flex-start;gap:8px;align-items:center;}
+html[data-theme] .lock-master-container #unlockNow,html[data-theme] .lock-master-container #createFirstPassphrase{
+  width:100%!important;min-height:49px!important;
+  background:linear-gradient(135deg,#FFF1B0 0%,#D4AF37 50%,#AA7C11 100%)!important;
+  box-shadow:0 5px 20px rgba(212,175,55,.23);
+  border-radius:9px!important;color:#090B10!important;font-weight:800!important;
+}
+html[data-theme] .lock-master-container #forgotPass{color:#E5C158!important;display:block!important;margin:10px auto!important;font-size:12px!important;}
+.lock-master-container .lock-bottom-line{
+  grid-column:1/-1;grid-row:2;
+  padding:13px 24px!important;
+  display:flex;justify-content:space-between;gap:12px;
+  border-top:1px solid rgba(212,175,55,.2)!important;
+  background:rgba(3,5,9,.6)!important;
+  color:#8F98A6!important;
+}
+/* Locked overlay is a secure modal; do not auto-close or hide password errors. */
+html[data-theme] .lock-overlay[hidden]{display:none!important;}
+@media(max-width:860px){
+ html[data-theme] .lock-master-container{grid-template-columns:1fr!important;grid-template-rows:auto auto auto!important;max-height:calc(100vh - 24px)!important;min-height:0!important;width:min(590px,calc(100vw - 24px))!important;}
+ .lock-master-container .lock-hero-panel{grid-column:1;grid-row:1;padding:24px!important;border-right:0;border-bottom:1px solid rgba(212,175,55,.24)}
+ .lock-master-container .lock-hero{margin-bottom:12px!important;padding-bottom:14px!important}
+ .lock-master-container .lock-overview{display:none!important}
+ .lock-master-container .lock-vault-panel{grid-column:1;grid-row:2;padding:24px!important}
+ .lock-master-container .lock-clock-box{margin-bottom:20px!important}
+ .lock-master-container .lock-bottom-line{grid-column:1;grid-row:3;padding:12px 18px!important;}
+}
+@media(max-height:690px) and (min-width:861px){
+ html[data-theme] .lock-master-container{min-height:0!important;max-height:calc(100vh - 20px)!important;}
+ .lock-master-container .lock-hero-panel,.lock-master-container .lock-vault-panel{padding:23px 32px!important;}
+ .lock-master-container .lock-hero-emblem{width:55px!important;height:55px!important;}
+ .lock-master-container .lock-hero-emblem img{width:55px!important;height:55px!important;}
+ .lock-master-container .lock-clock-box{margin-bottom:15px!important;padding:12px!important;}
+ .lock-master-container .lock-feature-list{gap:4px!important;}
+ .lock-master-container .lock-feature-list li{padding:6px 9px!important;}
+}
+@media(prefers-reduced-motion:reduce){.lock-master-container .lock-hero-emblem{animation:none!important}.lock-master-container :is(button,input){transition:none!important}}

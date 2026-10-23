@@ -1,0 +1,59 @@
+EAGLE RS WORKSPACE 2026 — FULL THEME & WINDOWS SECURITY GUIDE (v3.4)
+
+THIS UPDATE DOES NOT DELETE OR MIGRATE YOUR SAVED WHATSAPP/TELEGRAM SESSIONS.
+It retains the original app ID: com.eaglers.workspace, the same userData path and existing partition IDs.
+Keep the old profile backup until all connected accounts have been checked in the new version.
+
+1. THEME STUDIO
+   Settings > Appearance / Privacy > Workspace Themes (or top bar > Themes).
+   12 full-workspace palettes (including Absolute Black, Imperial Gold, Liquid Silver,
+   Pearl White, Smoked Glass). The sidebar, dashboard, buttons, Gemini tools,
+   settings, lock screen and alerts use the selected coordinated colors.
+   WhatsApp and Telegram webpages run inside their own official browser views.
+   EAGLE RS does NOT inject styling into their private chats; their own themes
+   and dark-mode settings are controlled within those services.
+   The selected theme persists across app restarts via encrypted workspace settings.
+
+2. WINDOWS DEVICE ENCRYPTION / BITLOCKER
+   EAGLE RS Settings > Security: Check disk protection (read-only).
+   Use Manage BitLocker or Device Encryption to open official Windows tools.
+   The result is diagnostic and may say 'Not verified' on localized Windows
+   installations, limited Windows editions, or where permissions prevent a check.
+   It NEVER enables encryption or changes Windows protectors automatically.
+
+   IMPORTANT BEFORE ENABLING BITLOCKER:
+   - Save the unique 48-digit recovery key outside the encrypted device.
+   - Verify the recovery key can be retrieved before continuing.
+   - Keep a trustworthy backup of important files; power loss and drive errors can occur.
+   - Check encryption for BOTH the Windows OS drive (usually C:) and any D: drive
+     containing sensitive account backups. Encrypting D: only does not protect
+     Chromium session data stored under your Windows profile on C:.
+   - If you forget/lose the recovery key, you may permanently lose access to disk data.
+   - Never send a recovery key, password, or Gemini API key in chat.
+
+   Microsoft instructions:
+   https://support.microsoft.com/en-us/windows/security/encryption/bitlocker-drive-encryption
+   https://support.microsoft.com/en-us/windows/security/encryption/device-encryption-in-windows
+
+3. OTHER SECURITY LIMITS
+   Windows Device Encryption or BitLocker protects data at rest (lost/stolen device).
+   It cannot fully protect against malware that runs while Windows is unlocked.
+   The EAGLE RS master passphrase locks the UI, but messaging browser sessions
+   are still held by Chromium's persistent storage. No software is hacker-proof.
+   Keep Windows patched, Windows Security enabled, and avoid untrusted downloads.
+
+4. HOW TO BUILD ON WINDOWS
+   Extract ZIP to a new folder on D: without deleting the old installation.
+   Open PowerShell in the extracted project and run:
+     npm.cmd install
+     npm.cmd run check
+     npm.cmd run dist
+   The generated installer will be in the dist folder.
+   Close old EAGLE RS (including tray) and back up %APPDATA%\eagle-rs-workspace
+   before running the new Setup v3.4.0 .exe.
+   Verify WhatsApp 1, then other accounts, before deleting any backup.
+
+5. WHAT WAS TESTED IN THE BUILD PROJECT
+   JavaScript syntax, secure-state backup recovery, master-lock reset paths,
+   profile ID preservation, theme ID sanitization, IPC permissions, and source
+   ZIP integrity. The .exe still needs a Windows machine and live integration tests.

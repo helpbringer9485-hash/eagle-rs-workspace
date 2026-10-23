@@ -1,0 +1,8 @@
+.screenshot-tools{margin:12px 0;padding:12px;border:1px solid var(--ui-border,#615238);border-radius:10px;background:var(--ui-surface,#121720)}
+.screenshot-tools h4{margin:0 0 9px;font-size:13px}.screenshot-tools .tool-row{flex-wrap:wrap}
+#screenshotStatus{font-size:11px;line-height:1.5;color:var(--ui-muted,#aab2bf);margin:8px 0 0}
+#screenshotList{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:8px}
+.screenshot-card{min-width:0;padding:6px;border:1px solid var(--ui-border,#615238);border-radius:7px;display:flex;flex-direction:column;gap:6px}
+.screenshot-card img{width:100%;height:110px;object-fit:contain;background:#05080e;border-radius:4px}
+.screenshot-card span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:10px}.screenshot-card button{font-size:11px;padding:5px}
+#captureCurrentChat{margin-left:auto}#screenshotFiles[hidden]{display:none!important}

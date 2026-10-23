@@ -1,0 +1,51 @@
+/* EAGLE RS v3.8 — accessible account navigation, unified manual call follow-up.
+   Never injects styles into WhatsApp, Telegram, or Signal. */
+.sidebar:not(.collapsed){width:166px!important;min-width:166px!important}
+.platform-group .account-list{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:5px!important;padding:8px 4px!important}
+.platform-group .account-row,.platform-group .signal-row,.platform-group .telegram-row{width:100%!important;min-height:66px!important;margin:0!important;border-radius:12px!important}
+.platform-group .avatar-caption{font-size:11px!important;max-width:70px!important;line-height:1.15!important;color:var(--text-secondary)!important}
+.platform-group .side-header{padding:8px 6px!important;flex-wrap:wrap;row-gap:5px}
+.platform-group .group-trigger{font-size:11px!important;letter-spacing:0!important;white-space:nowrap}
+.platform-group .group-order-actions{margin-left:auto}
+.foot-side{display:flex;flex-direction:column;gap:7px;min-height:0;max-height:43vh;overflow-y:auto;overscroll-behavior:contain;padding:10px!important}
+.foot-side>button{min-height:34px!important;width:100%;line-height:1.25;white-space:normal!important;padding:8px 7px!important;font-size:11px!important}
+.foot-side .always-on-panel{padding:10px 8px}
+.foot-side .always-on-actions button{font-size:11px!important;padding:7px 4px!important}
+.foot-side .organize-tip{font-size:10px!important}
+.telegram-launch{display:flex!important;align-items:center;justify-content:center;gap:9px;border:1px solid rgba(0,136,204,.45)!important;background:color-mix(in srgb,var(--bg-panel) 82%,#0088cc 18%)!important;color:var(--text-primary)!important;font-weight:650!important}
+.telegram-launch:hover{border-color:#0088cc!important;background:color-mix(in srgb,var(--bg-panel) 72%,#0088cc 28%)!important}
+.telegram-launch img{width:20px;height:20px;flex-shrink:0}
+.calls-shortcut{display:flex!important;align-items:center!important;gap:9px!important;text-align:left!important;border:1px solid var(--border-color)!important;background:var(--bg-elevated)!important;color:var(--text-primary)!important;font-size:12px!important;font-weight:750}
+.calls-shortcut .phone-icon{display:grid;place-items:center;border-radius:8px;background:color-mix(in srgb,var(--bg-panel) 78%,#D4AF37 22%);width:25px;height:25px;font-size:17px;flex-shrink:0}
+.calls-shortcut .sidebar-call-badge{margin-left:auto;min-width:23px;padding:3px 6px;background:#B45309;color:#fff;border-radius:99px;font-size:11px;text-align:center;font-variant-numeric:tabular-nums}
+.missed-call-stat{border-color:color-mix(in srgb,var(--border-color) 55%,#D4AF37 45%)!important}
+.call-stat-icon{font-size:23px;color:var(--text-accent)}
+.call-stat-sources{display:block!important;margin-top:3px;color:var(--text-secondary);font-size:10px;line-height:1.1;white-space:nowrap;font-variant-numeric:tabular-nums}
+.stats{grid-template-columns:repeat(8,minmax(0,1fr))!important;gap:7px!important;padding:9px!important}
+.stats .stat{min-width:0!important;padding:10px 8px!important}
+.stats .stat small{font-size:10px;white-space:normal;line-height:1.2}
+.stats .stat strong{font-variant-numeric:tabular-nums;font-size:20px!important}
+.call-platform-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:9px 0}
+.call-platform-chip{display:flex!important;align-items:center;gap:5px;flex-wrap:wrap;justify-content:center;min-width:0;border:1px solid var(--border-color)!important;border-radius:10px!important;background:var(--bg-elevated)!important;padding:7px 3px!important;color:var(--text-primary)!important;font-weight:650;font-size:11px!important}
+.call-platform-chip img{height:20px;width:20px}
+.call-platform-chip strong{min-width:19px;background:var(--bg-panel);border-radius:12px;padding:3px 5px;text-align:center;margin-left:auto}
+.call-platform-chip.platform-whatsapp{border-bottom:2px solid #10B981!important}
+.call-platform-chip.platform-signal{border-bottom:2px solid #2C6BED!important}
+.call-platform-chip.platform-telegram{border-bottom:2px solid #0088CC!important}
+.call-entry{margin-top:10px!important;padding:12px!important;border-radius:13px!important;background:var(--bg-elevated)!important;border:1px solid var(--border-color)!important;min-width:0}
+.call-entry.platform-whatsapp{border-left:3px solid #10B981!important}.call-entry.platform-signal{border-left:3px solid #2C6BED!important}.call-entry.platform-telegram{border-left:3px solid #0088CC!important}
+.call-platform-identity{display:flex;align-items:center;gap:7px;color:var(--text-secondary);font-size:11px;font-weight:700;margin-bottom:7px;min-width:0}
+.call-platform-identity img{width:26px;height:26px;flex-shrink:0}
+.call-platform-identity span{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.call-entry-head{flex-wrap:wrap;gap:7px}.call-entry-head strong{font-size:13px!important}
+.call-entry small{display:block;overflow-wrap:anywhere}
+.call-entry-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
+.call-entry-actions button{min-width:0!important;padding:8px 5px!important;white-space:normal!important;font-size:11px!important}
+.stats .stat:focus-visible,.calls-shortcut:focus-visible,.telegram-launch:focus-visible,.call-platform-chip:focus-visible{outline:2px solid var(--accent-color);outline-offset:2px}
+@media(max-width:1550px){.stats{grid-template-columns:repeat(4,minmax(0,1fr))!important}.stats .compact-due{display:flex!important}}
+@media(max-width:1090px){.sidebar:not(.collapsed){width:132px!important;min-width:132px!important}.platform-group .account-list{grid-template-columns:repeat(2,minmax(0,1fr))!important}.stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}.call-platform-summary{grid-template-columns:1fr}}
+
+/* Override stronger legacy selectors after all existing theme rules. */
+html[data-theme] .call-entry-actions{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
+html[data-theme] .foot-side #openTelegramAccounts{display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important}
+html[data-theme] .call-platform-chip{background:var(--bg-elevated)!important;color:var(--text-primary)!important}

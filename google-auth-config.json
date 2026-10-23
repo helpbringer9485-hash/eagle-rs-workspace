@@ -1,0 +1,4 @@
+{
+  "clientId": "",
+  "note": "Publisher configuration only: add a Google OAuth Desktop application Client ID after registering it with Google. Do not enter a client secret or a personal Google password. Google button remains unavailable until configured."
+}

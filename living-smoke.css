@@ -1,0 +1,34 @@
+/* EAGLE RS v3.18 • Actual moving smoke video (not CSS fog painted as a still).
+   Plays ONLY on lock/startup; never on opened chats; disabled on reduced motion. */
+html[data-theme] #lockOverlay .vault-atmosphere{z-index:0;contain:paint;}
+html[data-theme] #lockOverlay .vault-atmosphere .mist{display:none!important;}
+html[data-theme] #lockOverlay .vault-smoke-video{
+ position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+ display:block;pointer-events:none;user-select:none;
+ mix-blend-mode:screen;opacity:.63;
+ filter:contrast(1.07) brightness(1.1);
+ /* Disperse gently so the smoke never covers the password input. */
+ mask-image:radial-gradient(ellipse 83% 86% at 53% 50%,black 10%,transparent 100%);
+ -webkit-mask-image:radial-gradient(ellipse 83% 86% at 53% 50%,black 10%,transparent 100%);
+}
+/* Glass remains legible; the actual smoke drifts through the hero background. */
+html[data-theme] #lockOverlay .lock-master-container{
+ background:color-mix(in srgb,var(--vault-surface) 89%,transparent)!important;
+}
+html[data-theme] #lockOverlay .lock-hero-panel{
+ background:radial-gradient(ellipse at 0% 4%,rgba(var(--vault-rgb),.09),transparent 59%),
+ var(--vault-veins) center/cover no-repeat,
+ color-mix(in srgb,var(--vault-hero) 80%,transparent)!important;
+}
+html[data-theme] #lockOverlay .lock-vault-panel{
+ background:color-mix(in srgb,var(--vault-surface) 97%,transparent)!important;
+}
+html[data-theme="obsidian-gold"] #lockOverlay .vault-smoke-video{opacity:.75;filter:contrast(1.1) saturate(.9);}
+html[data-theme="pitch-black"] #lockOverlay .vault-smoke-video{opacity:.45;filter:grayscale(1) brightness(1.12);}
+html[data-theme="chatgpt-slate"] #lockOverlay .vault-smoke-video{opacity:.14;filter:grayscale(1) hue-rotate(105deg);}
+html[data-theme="titanium-silver"] #lockOverlay .vault-smoke-video{opacity:.14;filter:grayscale(1);}
+html[data-theme="emerald-green"] #lockOverlay .vault-smoke-video{opacity:.43;filter:hue-rotate(90deg) saturate(1.1);}
+html[data-theme="royal-sapphire"] #lockOverlay .vault-smoke-video{opacity:.53;filter:hue-rotate(168deg) saturate(1.1);}
+html.vault-motion-off #lockOverlay .vault-smoke-video{display:none!important;}
+@media(prefers-reduced-motion:reduce){html[data-theme] #lockOverlay .vault-smoke-video{display:none!important;}}
+@media(max-width:860px){html[data-theme] #lockOverlay .vault-smoke-video{opacity:.25;}}

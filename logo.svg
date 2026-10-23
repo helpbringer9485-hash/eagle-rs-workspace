@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Eagle RS neural crystal eagle">
+<defs><linearGradient id="wing" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#6366F1"/><stop offset=".55" stop-color="#24A1DE"/><stop offset="1" stop-color="#a4f4ff"/></linearGradient><radialGradient id="halo"><stop stop-color="#6366F1" stop-opacity=".45"/><stop offset="1" stop-color="#6366F1" stop-opacity="0"/></radialGradient></defs>
+<circle cx="64" cy="62" r="62" fill="url(#halo)"/><g fill="none" stroke="url(#wing)" stroke-width="2.7" stroke-linejoin="round" stroke-linecap="round">
+<path d="M8 14 45 29 76 52 91 56 101 51 119 55 108 63 120 69 109 73 103 67 88 71 78 86 65 96 52 116 52 94 26 105 39 85 16 85 37 72 20 51 48 57 17 31 56 49Z"/>
+<path d="M8 14 45 29 56 49 76 52 65 71 52 94 37 72 48 57 20 51 M17 31 48 57 56 49 65 71 39 85M26 105 52 94 65 96 78 86 88 71 65 71 48 57M101 51 103 67 91 56 119 55"/>
+<path d="M45 29 56 49 65 71 78 86 103 67M52 116 65 96 65 71 M21 32 31 43 49 48" stroke-width="1.5" opacity=".78"/>
+</g><g fill="#8eeeff"><circle cx="45" cy="29" r="3.6"/><circle cx="56" cy="49" r="3.5"/><circle cx="65" cy="71" r="4"/><circle cx="88" cy="71" r="3.5"/><circle cx="78" cy="86" r="3"/><circle cx="52" cy="94" r="2.5"/></g><circle cx="105" cy="59" r="2.2" fill="#05080E"/></svg>

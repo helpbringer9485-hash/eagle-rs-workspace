@@ -1,0 +1,30 @@
+/* v3.13.1 | Fixed top-layer Account Actions menu.
+   The native Popover API puts this menu ABOVE embedded WhatsApp/Telegram webviews,
+   even when their native surfaces would cover an ordinary CSS dropdown. */
+html[data-theme] .profile-more{position:relative!important;z-index:2!important;}
+html[data-theme] .profile-more>summary.more-dots{display:grid!important;place-items:center!important;cursor:pointer!important;list-style:none!important;width:36px!important;height:36px!important;padding:0!important;border:1px solid var(--ui-border)!important;background:var(--ui-panel)!important;border-radius:10px!important;color:var(--ui-text)!important;}
+html[data-theme] .profile-more>summary.more-dots:hover,html[data-theme] .profile-more[open]>summary.more-dots{border-color:var(--ui-accent)!important;background:var(--ui-hover)!important;}
+html[data-theme] .profile-more>summary.more-dots svg{width:18px!important;height:18px!important;display:block!important;pointer-events:none;}
+html[data-theme] #profileMoreMenu{
+ position:fixed!important;inset:auto!important;right:auto!important;bottom:auto!important;
+ margin:0!important;max-width:min(90vw,240px)!important;width:208px!important;
+ max-height:min(85vh,270px)!important;overflow-y:auto!important;
+ padding:8px!important;border:1px solid var(--ui-border)!important;
+ border-radius:12px!important;background:var(--ui-solid)!important;
+ box-shadow:0 16px 44px rgba(0,0,0,.56),0 0 0 1px var(--ui-accent-glow)!important;
+ color:var(--ui-text)!important;z-index:2147483647!important;
+}
+#profileMoreMenu:not(:popover-open):not(.menu-fallback-open){display:none!important;}
+html[data-theme] #profileMoreMenu:popover-open,html[data-theme] #profileMoreMenu.menu-fallback-open{display:grid!important;gap:4px!important;}
+html[data-theme] #profileMoreMenu button{
+ display:flex!important;align-items:center!important;text-align:left!important;
+ width:100%!important;min-height:38px!important;padding:9px 12px!important;
+ border:1px solid transparent!important;border-radius:8px!important;background:transparent!important;
+ color:var(--ui-text)!important;line-height:1.3!important;font-size:12px!important;
+}
+html[data-theme] #profileMoreMenu button:hover,html[data-theme] #profileMoreMenu button:focus-visible{
+ border-color:var(--ui-border)!important;background:var(--ui-hover)!important;outline:1px solid var(--ui-accent)!important;
+}
+/* Native popovers render in the top layer even with an embedded webview underneath. */
+html[data-theme] #profileMoreMenu::backdrop{background:transparent!important;}
+@media(prefers-reduced-motion:reduce){html[data-theme] #profileMoreMenu{transition:none!important;}}

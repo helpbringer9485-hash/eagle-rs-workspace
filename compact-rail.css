@@ -1,0 +1,45 @@
+/* EAGLE RS v3.10.0 — Compact Rail + Responsive Controls
+   The provider webviews are not restyled or destroyed by collapsing navigation. */
+html[data-theme] .sidebar:not(.collapsed){width:144px!important;min-width:144px!important}
+html[data-theme] #platformGroups{gap:6px!important;padding:7px 6px!important;min-height:0;overflow-y:auto;overscroll-behavior:contain}
+html[data-theme] .platform-group{border-radius:11px!important;contain:layout style}
+html[data-theme] .platform-group .side-header{height:35px;min-height:35px;padding:4px 6px!important;gap:5px!important}
+html[data-theme] .group-trigger{font-size:11px!important;font-weight:750;gap:5px!important;min-width:0;line-height:1.2}
+html[data-theme] .group-trigger .section-icon{width:15px!important;height:15px!important}
+html[data-theme] .group-trigger .caret{font-size:12px!important;flex:0 0 11px!important}
+html[data-theme] .group-trigger:focus-visible{outline:2px solid var(--ui-accent);outline-offset:2px}
+html[data-theme] .platform-group .side-header .tiny{height:23px!important;min-height:23px!important;width:23px!important;min-width:23px!important;font-size:16px!important;border-radius:7px!important}
+html[data-theme] .platform-group .group-order-actions{display:none!important}
+html[data-theme] .arrange-mode .platform-group .group-order-actions{display:flex!important}
+html[data-theme] .platform-group .account-list{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:3px 4px!important;justify-items:stretch!important;max-height:min(43vh,430px)!important;overflow:auto;overscroll-behavior:contain;padding:6px!important;contain:layout style;scrollbar-gutter:stable}
+html[data-theme] .platform-group .account-list.is-collapsed{display:none!important}
+html[data-theme] .platform-group .account-row,
+html[data-theme] .platform-group .telegram-row,
+html[data-theme] .platform-group .signal-row{width:auto!important;min-width:0!important;min-height:50px!important;max-height:53px!important;padding:4px 2px!important;margin:0!important;gap:3px!important;border-radius:9px!important;outline-offset:-1px!important;transition:background-color .1s,border-color .1s!important}
+html[data-theme] .account-avatar,html[data-theme] .signal-avatar,html[data-theme] .telegram-avatar{height:30px!important;width:30px!important;min-height:30px!important;border-radius:8px!important}
+html[data-theme] .account-avatar img.circle,html[data-theme] .signal-avatar img.circle,html[data-theme] .telegram-avatar img.circle{height:20px!important;width:20px!important;max-width:20px!important;object-fit:contain!important}
+html[data-theme] .platform-group .avatar-caption{font-size:9px!important;line-height:1.1!important;max-width:48px!important;margin:0!important;letter-spacing:.1px!important}
+html[data-theme] .account-row .badge,html[data-theme] .telegram-row .badge,html[data-theme] .signal-badge{min-width:14px!important;line-height:13px!important;font-size:9px!important;padding:0 3px!important;top:-6px!important;right:-6px!important;border-radius:9px!important}
+html[data-theme] .session-live:after{height:7px!important;width:7px!important;right:-3px!important;bottom:-3px!important}
+html[data-theme] .foot-side{padding:5px 6px!important;border-top:1px solid var(--ui-border)!important;max-height:55vh!important;overflow-y:auto!important}
+.background-drawer{border:1px solid var(--ui-border);border-radius:11px;background:var(--ui-glass);width:100%;overflow:hidden}
+.background-drawer>summary{display:flex;gap:6px;align-items:center;min-height:34px;padding:7px;cursor:pointer;list-style:none;color:var(--ui-text);font-size:10px;font-weight:700;user-select:none}
+.background-drawer>summary::-webkit-details-marker{display:none}
+.background-drawer>summary:focus-visible{outline:2px solid var(--ui-accent);outline-offset:-2px}
+.background-drawer>summary .session-dot{width:7px;height:7px;flex:0 0 7px}
+.background-drawer>summary strong{margin-left:auto;color:var(--ui-muted);font-size:10px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.background-drawer>summary .drawer-caret{font-size:10px;transform:rotate(-90deg);transition:transform .1s;color:var(--ui-accent)}
+.background-drawer[open]>summary .drawer-caret{transform:rotate(0)}
+.background-drawer-body{display:grid;gap:7px;padding:0 6px 7px}
+.background-drawer-body .session-compact{padding:7px 5px;border-radius:9px}
+html[data-theme] .session-buttons button{padding:7px 2px!important;font-size:9px!important;min-height:31px!important}
+html[data-theme] #toggleArrangeMode[aria-pressed="true"]{color:var(--ui-accent)!important;border-color:var(--ui-accent)!important}
+/* Avoid forcing GPU-heavy frosted-glass effects on scroll-heavy sidebar content. */
+html[data-theme] .sidebar,html[data-theme] .platform-stack,html[data-theme] .platform-group{backdrop-filter:none!important}
+html[data-theme] .platform-group .account-row:hover,html[data-theme] .platform-group .signal-row:hover,html[data-theme] .platform-group .telegram-row:hover{transform:none!important;filter:none!important;background:var(--ui-hover)!important}
+@media(max-width:1280px){html[data-theme] .sidebar:not(.collapsed){width:132px!important;min-width:132px!important}}
+@media(max-height:720px){html[data-theme] .platform-group .account-list{max-height:min(34vh,280px)!important}html[data-theme] .foot-side{max-height:44vh!important}}
+@media(prefers-reduced-motion:reduce){html[data-theme] .platform-group *,html[data-theme] .background-drawer *{transition:none!important;animation:none!important}}
+
+.economy-option{display:flex;align-items:flex-start;gap:6px;padding:8px 4px;color:var(--ui-muted);font-size:10px;line-height:1.4;cursor:pointer}
+.economy-option input{flex-shrink:0;width:14px;height:14px;accent-color:var(--ui-accent);margin:0}

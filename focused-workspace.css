@@ -1,0 +1,12 @@
+#groupTelegram,#toolCalls,#panelCalls,[data-retired=true],#quickMissedCalls,#openTelegramAccounts,#addTelegram{display:none!important}
+html[data-theme] .stats{grid-template-columns:repeat(5,minmax(0,1fr))!important}
+html[data-theme] .sidebar:not(.collapsed){width:240px!important;min-width:220px!important}
+html[data-theme] .platform-group .account-row,html[data-theme] .platform-group .signal-row{min-height:56px!important;border-radius:12px!important;margin:4px 5px!important;width:calc(100% - 10px)!important;padding:10px!important;gap:12px!important}
+html[data-theme] .account-row .nm,html[data-theme] .signal-row .nm{display:block!important;line-height:1.4!important;font-size:13px!important;font-weight:600!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+html[data-theme] .platform-group{border-radius:15px!important;margin-bottom:12px!important}
+html[data-theme] .account-row.active,html[data-theme] .signal-row.active{background:var(--ui-hover)!important;border:1px solid var(--ui-accent)!important;box-shadow:inset 3px 0 var(--ui-accent)!important}
+html[data-theme] .signal-controller{max-width:610px!important;border-radius:20px!important;padding:30px!important}
+html[data-theme] button:focus-visible{outline:2px solid var(--ui-accent);outline-offset:3px}
+html[data-theme] .quick-actions{flex-wrap:wrap!important;height:auto!important}
+html[data-theme] .quick-actions .subtle{display:none!important}
+html[data-theme] .tool-panel{padding:18px!important}.tool-panel h3{line-height:1.5}

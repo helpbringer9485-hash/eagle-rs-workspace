@@ -1,0 +1,168 @@
+/* EAGLE RS v3.17 • Atmospheric Vault.
+   Full-window theme-matched lock visuals. No provider webview DOM changes.
+   Motion uses only opacity/transform on THREE decorative layers; no canvas,
+   interval timers, scripting in webviews or heavyweight blur on moving layers. */
+html[data-theme="obsidian-gold"]{
+ --vault-backdrop:#05070A;--vault-surface:#0C1119;--vault-hero:#10141C;
+ --vault-stroke:rgba(212,175,55,.58);--vault-soft:rgba(212,175,55,.19);
+ --vault-rgb:212,175,55;--vault-ink:#F8FAFC;--vault-muted:#ADB6C6;
+ --vault-accent:#E5C158;--vault-button:linear-gradient(135deg,#FFF1B0 0%,#D4AF37 49%,#AA7C11 100%);
+ --vault-button-ink:#080A0F;--vault-veins:url('theme-assets/veins-obsidian-gold.svg');
+}
+html[data-theme="chatgpt-slate"]{
+ --vault-backdrop:#E9F3F1;--vault-surface:#FFFFFF;--vault-hero:#F5FAF9;
+ --vault-stroke:rgba(16,163,127,.49);--vault-soft:rgba(16,163,127,.17);
+ --vault-rgb:16,163,127;--vault-ink:#142A2A;--vault-muted:#4B6471;
+ --vault-accent:#09846B;--vault-button:linear-gradient(135deg,#A6F2D9,#10A37F 52%,#08795E);
+ --vault-button-ink:#071B16;--vault-veins:url('theme-assets/veins-chatgpt-slate.svg');
+}
+html[data-theme="pitch-black"]{
+ --vault-backdrop:#000000;--vault-surface:#0A0B0D;--vault-hero:#0E1012;
+ --vault-stroke:rgba(215,221,230,.46);--vault-soft:rgba(215,221,230,.12);
+ --vault-rgb:204,212,221;--vault-ink:#F8FAFC;--vault-muted:#A7B1BD;
+ --vault-accent:#D3D7DC;--vault-button:linear-gradient(135deg,#FFFFFF,#D3D7DC 48%,#8E9AA9);
+ --vault-button-ink:#070809;--vault-veins:url('theme-assets/veins-pitch-black.svg');
+}
+html[data-theme="titanium-silver"]{
+ --vault-backdrop:#D8E2EB;--vault-surface:#F7FAFD;--vault-hero:#E7EEF5;
+ --vault-stroke:rgba(92,112,136,.46);--vault-soft:rgba(92,112,136,.15);
+ --vault-rgb:97,118,140;--vault-ink:#111E32;--vault-muted:#43566D;
+ --vault-accent:#465D77;--vault-button:linear-gradient(135deg,#FFFFFF,#C0CAD4 46%,#8293A6);
+ --vault-button-ink:#122034;--vault-veins:url('theme-assets/veins-titanium-silver.svg');
+}
+html[data-theme="emerald-green"]{
+ --vault-backdrop:#031008;--vault-surface:#081C10;--vault-hero:#0B2215;
+ --vault-stroke:rgba(16,185,129,.5);--vault-soft:rgba(16,185,129,.16);
+ --vault-rgb:16,185,129;--vault-ink:#F2FFF9;--vault-muted:#AACDBB;
+ --vault-accent:#45DCA5;--vault-button:linear-gradient(135deg,#B5FFDF,#10B981 49%,#087A56);
+ --vault-button-ink:#03170D;--vault-veins:url('theme-assets/veins-emerald-green.svg');
+}
+html[data-theme="royal-sapphire"]{
+ --vault-backdrop:#040B1A;--vault-surface:#0B1A2D;--vault-hero:#0E243C;
+ --vault-stroke:rgba(81,140,255,.5);--vault-soft:rgba(81,140,255,.15);
+ --vault-rgb:44,107,237;--vault-ink:#F8FAFC;--vault-muted:#A5B9D2;
+ --vault-accent:#91BDFF;--vault-button:linear-gradient(135deg,#CDE3FF,#4E8EFF 45%,#2456BC);
+ --vault-button-ink:#071328;--vault-veins:url('theme-assets/veins-royal-sapphire.svg');
+}
+/* Entire window treatment, not just a card: layered stone, fine metallic veins,
+   and theme-tinted distant luminance. Original messaging area is hidden by lock. */
+html[data-theme] #lockOverlay.lock-overlay {
+ isolation:isolate;
+ position:fixed;inset:0;
+ background:
+   radial-gradient(ellipse at 17% 30%,rgba(var(--vault-rgb),.14),transparent 45%),
+   radial-gradient(ellipse at 90% 80%,rgba(var(--vault-rgb),.09),transparent 46%),
+   var(--vault-veins) center / cover no-repeat,
+   var(--vault-backdrop) !important;
+ backdrop-filter:blur(6px) saturate(125%)!important;
+ -webkit-backdrop-filter:blur(6px) saturate(125%)!important;
+ padding:clamp(12px,2vw,26px)!important;
+ overflow:auto!important;
+}
+html[data-theme] #lockOverlay[hidden]{display:none!important}
+.vault-atmosphere {position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0;contain:paint;}
+.vault-atmosphere .mist{
+ position:absolute;display:block;pointer-events:none;width:70vw;height:48vh;
+ border-radius:50%;opacity:.54;will-change:transform,opacity;
+ background:radial-gradient(ellipse at 44% 52%,rgba(var(--vault-rgb),.13),rgba(var(--vault-rgb),.035) 32%,transparent 65%);
+}
+.vault-atmosphere .mist-one{top:-10vh;left:-20vw;animation:mist-drift-one 25s ease-in-out infinite alternate;}
+.vault-atmosphere .mist-two{top:40vh;right:-26vw;animation:mist-drift-two 33s ease-in-out infinite alternate;opacity:.45;}
+.vault-atmosphere .mist-three{bottom:-31vh;left:30vw;animation:mist-drift-three 40s ease-in-out infinite alternate;opacity:.33;}
+@keyframes mist-drift-one{from{transform:translate3d(-2%,1%,0) scale(.96)}to{transform:translate3d(20%,12%,0) scale(1.16)}}
+@keyframes mist-drift-two{from{transform:translate3d(3%,-3%,0) scale(1.03)}to{transform:translate3d(-22%,-20%,0) scale(1.14)}}
+@keyframes mist-drift-three{from{transform:translate3d(-8%,0,0)}to{transform:translate3d(14%,-19%,0)}}
+/* A light entrance that never holds the password form hostage. */
+html[data-theme] #lockOverlay .lock-master-container{
+ z-index:1;
+ position:relative;
+ animation:vault-arrive .65s cubic-bezier(.2,.7,.2,1) both;
+ background:var(--vault-surface)!important;
+ color:var(--vault-ink)!important;
+ border-color:var(--vault-stroke)!important;
+ box-shadow:0 32px 95px rgba(0,0,0,.55),0 0 35px rgba(var(--vault-rgb),.22),inset 0 0 0 1px rgba(var(--vault-rgb),.08)!important;
+}
+@keyframes vault-arrive{from{opacity:.58;transform:translateY(10px) scale(.991)}to{opacity:1;transform:translateY(0) scale(1)}}
+html[data-theme] #lockOverlay .lock-master-container::before{
+ background:linear-gradient(115deg,rgba(var(--vault-rgb),.89),transparent 42%,transparent 63%,rgba(var(--vault-rgb),.68)) border-box!important;
+}
+html[data-theme] #lockOverlay .lock-hero-panel{
+ background:
+    radial-gradient(ellipse at 4% 0%,rgba(var(--vault-rgb),.15),transparent 50%),
+    var(--vault-veins) center / cover no-repeat,
+    linear-gradient(140deg,var(--vault-hero),var(--vault-surface))!important;
+ border-right:1px solid var(--vault-soft)!important;
+}
+html[data-theme] #lockOverlay .lock-vault-panel{
+ background:linear-gradient(152deg,var(--vault-surface),var(--vault-hero))!important;
+}
+html[data-theme] #lockOverlay .lock-hero{
+ border-bottom:1px solid var(--vault-soft)!important;
+}
+html[data-theme] #lockOverlay .lock-hero-emblem{
+ filter:drop-shadow(0 0 13px rgba(var(--vault-rgb),.30))!important;
+}
+html[data-theme] #lockOverlay .lock-hero-emblem img{
+ filter:drop-shadow(0 0 10px rgba(var(--vault-rgb),.38))!important;
+}
+html[data-theme] #lockOverlay :is(.lock-mission,.lock-badge,.lock-clock-label,.lock-feature-list strong,.passphrase-label,#forgotPass) {color:var(--vault-accent)!important;}
+html[data-theme] #lockOverlay :is(.lock-hero h2,.lock-overview h3,.lock-form-title,#lockClock){color:var(--vault-ink)!important;}
+html[data-theme] #lockOverlay .lock-hero h2 span{
+ background:var(--vault-button)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent!important;
+}
+html[data-theme] #lockOverlay :is(.lock-tagline,.lock-overview p,.lock-feature-list span,.lock-form-caption,.lock-privacy-note,#lockCalendar){color:var(--vault-muted)!important;}
+html[data-theme] #lockOverlay :is(.lock-feature-list li,.lock-clock-box){
+ border:1px solid var(--vault-soft)!important;
+ background:rgba(var(--vault-rgb),.055)!important;
+}
+html[data-theme] #lockOverlay :is(#unlockPhrase,#firstPassphrase,#firstPassphraseConfirm,#recoveryCode,#recoveryNewPass,#recoveryNewPassConfirm){
+ background:var(--vault-surface)!important;color:var(--vault-ink)!important;
+ border-color:var(--vault-stroke)!important;
+}
+html[data-theme] #lockOverlay input:focus-visible{outline:2px solid var(--vault-accent)!important;outline-offset:1px!important;}
+html[data-theme] #lockOverlay :is(#unlockNow,#createFirstPassphrase,#submitRecovery){
+ background:var(--vault-button)!important;
+ color:var(--vault-button-ink)!important;border:1px solid var(--vault-stroke)!important;
+ box-shadow:0 0 18px rgba(var(--vault-rgb),.18)!important;
+}
+html[data-theme] #lockOverlay .lock-bottom-line{border-color:var(--vault-soft)!important;color:var(--vault-muted)!important;}
+html[data-theme] #lockOverlay .lock-vault-panel :is(#unlockResult,.security-note){color:var(--vault-accent)!important;}
+/* Visual identity is consistent in the unlocked app shell as well. */
+html[data-theme] .masthead .brand-logo{
+ padding:2px;border:1px solid var(--vault-stroke)!important;
+ background:radial-gradient(circle,rgba(var(--vault-rgb),.08),transparent 79%)!important;
+ box-shadow:0 0 17px rgba(var(--vault-rgb),.19)!important;
+}
+html[data-theme] .executive-inbox-trigger{
+ display:inline-flex!important;align-items:center!important;gap:8px!important;
+ border-color:var(--vault-stroke)!important;
+}
+html[data-theme] .executive-inbox-trigger .inbox-glyph{
+ display:inline-grid;place-items:center;line-height:1;font-size:16px;color:var(--text-accent)!important;
+}
+html[data-theme] .executive-inbox-trigger[aria-expanded="true"]{
+ box-shadow:0 0 0 1px var(--vault-stroke),0 0 16px rgba(var(--vault-rgb),.13)!important;
+}
+/* No smoke runs on unlocked chats. Static interior glow only, no redraw of webviews. */
+html[data-theme] .masthead{background-image:linear-gradient(115deg,rgba(var(--vault-rgb),.045),transparent 51%)!important;}
+/* Animation opt-out is stored in the same encrypted workspace preferences. */
+html.vault-motion-off .vault-atmosphere .mist,
+html.vault-motion-off #lockOverlay .lock-master-container,
+html.vault-motion-off #lockOverlay .lock-hero-emblem,
+html.vault-motion-off #lockOverlay .lock-hero-emblem img{animation:none!important;will-change:auto!important;}
+@media(prefers-reduced-motion:reduce){
+ .vault-atmosphere .mist,#lockOverlay .lock-master-container,#lockOverlay .lock-hero-emblem,#lockOverlay .lock-hero-emblem img{animation:none!important;will-change:auto!important;}
+}
+@media(max-width:860px){html[data-theme] #lockOverlay .lock-hero-panel{border-right:0!important;border-bottom:1px solid var(--vault-soft)!important;}}
+@media(max-height:700px) and (min-width:861px){
+ html[data-theme] #lockOverlay .lock-master-container{max-height:calc(100vh - 24px)!important;}
+}
+/* Theme-aware lock footer and minor chrome details. */
+html[data-theme] #lockOverlay .lock-bottom-line{
+ background:rgba(var(--vault-rgb),.035)!important;
+ border-top:1px solid var(--vault-soft)!important;
+ color:var(--vault-muted)!important;
+}
+html[data-theme] #lockOverlay :is(.lock-clock-symbol,.status-light){color:var(--vault-accent)!important;}
+html[data-theme] #lockOverlay .lock-badge{border-color:var(--vault-soft)!important;background:rgba(var(--vault-rgb),.08)!important;}
+html[data-theme] #lockOverlay .status-light{background:var(--vault-accent)!important;box-shadow:0 0 10px rgba(var(--vault-rgb),.42)!important;}

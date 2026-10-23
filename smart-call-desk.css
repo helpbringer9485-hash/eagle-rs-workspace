@@ -1,0 +1,15 @@
+/* v3.13 · calm call-management UI, respects all six existing color themes. */
+html[data-theme] #panelCalls .call-watch-strip{display:grid;gap:7px;padding:13px;border:1px solid var(--ui-border);border-radius:12px;background:var(--ui-solid);margin:10px 0 14px}
+html[data-theme] .call-watch-strip strong{color:var(--ui-text);font-size:13px}
+html[data-theme] .call-watch-strip span{color:var(--ui-muted);font-size:11px;line-height:1.5}
+html[data-theme] .call-watch-strip button{width:max-content;max-width:100%;font-size:11px}
+html[data-theme] .call-notice-feedback{font-size:10px;line-height:1.45;color:var(--ui-muted);overflow-wrap:anywhere}
+html[data-theme] #callNoticeInput{min-height:64px;resize:vertical}
+html[data-theme] .call-outcome{display:inline-flex;width:max-content;font-size:10px;font-weight:750;letter-spacing:.15px;padding:4px 7px;border:1px solid var(--ui-border);border-radius:7px;color:var(--ui-text);margin:2px 0 8px}
+html[data-theme] .call-outcome-missed{border-color:rgba(243,91,112,.45);color:#f5a0af}
+html[data-theme] .call-outcome-incoming,html[data-theme] .call-outcome-answered{border-color:rgba(16,185,129,.45);color:#51dbb0}
+html[data-theme] .call-outcome-declined,html[data-theme] .call-outcome-ended{border-color:var(--ui-border);color:var(--ui-muted)}
+html[data-theme] .call-entry-actions{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+html[data-theme] .call-entry-actions button{font-size:10px!important;line-height:1.25;min-height:33px}
+html[data-theme] #panelCalls label{margin-top:10px;display:block}
+html[data-theme] #panelCalls .call-summary{margin-top:15px}

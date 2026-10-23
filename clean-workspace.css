@@ -1,0 +1,58 @@
+/* EAGLE RS v3.9: one primary account rail, concise session controls.
+   Uses shared six-theme variables; never reaches into private provider webviews. */
+html[data-theme] .sidebar:not(.collapsed){width:154px!important;min-width:154px!important}
+html[data-theme] .platform-group .account-list{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:5px!important;padding:7px 6px!important}
+html[data-theme] .platform-group .account-row,
+html[data-theme] .platform-group .signal-row,
+html[data-theme] .platform-group .telegram-row{
+  width:100%!important;min-height:60px!important;border-radius:10px!important;padding:4px 2px!important;
+  transition:background .12s ease,border-color .12s ease!important;
+}
+html[data-theme] .platform-group .account-row:hover,
+html[data-theme] .platform-group .signal-row:hover,
+html[data-theme] .platform-group .telegram-row:hover{background:var(--bg-elevated)!important}
+html[data-theme] .platform-group .avatar-caption{max-width:61px!important;font-size:10px!important;overflow:hidden;text-overflow:ellipsis}
+html[data-theme] .platform-group .side-header{padding:7px 6px!important;flex-wrap:nowrap!important}
+html[data-theme] .platform-group .group-order-actions{gap:1px!important}
+html[data-theme] .platform-group .group-order-actions button{width:19px!important;min-width:19px!important;height:22px!important;padding:0!important;font-size:11px!important}
+html[data-theme] .foot-side{max-height:unset!important;flex:0 0 auto;overflow:visible!important;padding:8px!important;gap:7px!important;border-top:1px solid var(--border-color);background:var(--bg-sidebar)!important}
+.session-compact{display:flex;flex-direction:column;gap:7px;border:1px solid var(--border-soft);background:var(--bg-panel);border-radius:12px;padding:10px 8px}
+.session-compact-title{display:flex;align-items:center;gap:7px;color:var(--text-primary);font-size:11px;line-height:1.2}
+.session-dot{width:8px;height:8px;border-radius:50%;background:#10B981;box-shadow:0 0 0 3px rgba(16,185,129,.12)}
+.session-count{font-size:11px;font-weight:700;color:var(--text-accent);font-variant-numeric:tabular-nums;line-height:1.4}
+.session-buttons{display:grid;grid-template-columns:1fr 1fr;gap:5px;min-width:0}
+html[data-theme] .session-buttons button{font-size:10px!important;line-height:1.2!important;padding:8px 3px!important;white-space:normal!important;min-height:31px!important;border-radius:8px!important}
+html[data-theme] .session-buttons button .action-icon{width:13px!important;height:13px!important}
+.session-help{color:var(--text-secondary);font-size:9px;line-height:1.45}
+.advanced-session-tools{border:1px solid var(--border-soft);border-radius:9px;background:var(--bg-panel)}
+.advanced-session-tools summary{cursor:pointer;user-select:none;list-style:none;color:var(--text-secondary);font-size:10px;font-weight:700;padding:9px 8px;display:flex;align-items:center;justify-content:space-between}
+.advanced-session-tools summary:after{content:'▾';font-size:11px;transform:rotate(-90deg);transition:transform .12s ease}
+.advanced-session-tools[open] summary:after{transform:none}
+.advanced-session-tools summary::-webkit-details-marker{display:none}
+.advanced-session-tools summary:hover{color:var(--text-primary)}
+.advanced-session-actions{display:flex;flex-direction:column;gap:6px;padding:0 7px 8px}
+html[data-theme] .advanced-session-actions button{display:flex!important;justify-content:center;gap:5px;align-items:center;min-height:30px!important;padding:6px!important;font-size:10px!important;line-height:1.2;border-radius:7px!important;white-space:normal!important;background:var(--bg-elevated)!important;color:var(--text-primary)!important;border:1px solid var(--border-soft)!important}
+html[data-theme] .advanced-session-actions button:hover{border-color:var(--accent-color)!important}
+.advanced-session-actions img{width:16px;height:16px;flex-shrink:0}
+.advanced-session-tools>small{display:block;padding:0 8px 9px;color:var(--text-secondary);font-size:9px;line-height:1.4}
+html[data-theme] .tabs{gap:6px!important;overflow:visible!important;align-items:center;padding:6px 10px!important;min-height:50px!important;position:relative}
+html[data-theme] .tabs>#expandProfile,
+html[data-theme] .tabs>#reloadCurrent,
+html[data-theme] .tabs>#activeCurrent{flex:0 0 auto!important;white-space:nowrap;border-radius:8px!important;padding:8px 11px!important}
+html[data-theme] .tabs>#tabCurrent{min-width:0;max-width:min(340px,46%);overflow:hidden;white-space:nowrap}
+html[data-theme] .tabs>#tabCurrent b{overflow:hidden;text-overflow:ellipsis}
+.profile-more{position:relative;margin-left:auto;flex:0 0 auto;z-index:75}
+.profile-more>summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:center;border:1px solid var(--border-color);padding:8px 12px;border-radius:8px;background:var(--bg-panel);color:var(--text-primary);font-size:12px;font-weight:650;user-select:none}
+.profile-more>summary::-webkit-details-marker{display:none}
+.profile-more[open]>summary,.profile-more>summary:hover{background:var(--bg-elevated);border-color:var(--accent-color)}
+.profile-more-menu{position:absolute;right:0;top:calc(100% + 7px);display:grid;gap:3px;width:194px;padding:7px;background:var(--bg-panel);border:1px solid var(--border-color);box-shadow:var(--shadow-panel);border-radius:11px;z-index:300;backdrop-filter:var(--glass-blur)}
+html[data-theme] .profile-more-menu button{width:100%;display:flex;justify-content:flex-start;padding:9px!important;min-height:34px;font-size:12px!important;border:0!important;box-shadow:none!important;background:transparent!important;color:var(--text-primary)!important;border-radius:7px!important}
+html[data-theme] .profile-more-menu button:hover{background:var(--bg-elevated)!important}
+html[data-theme] .quick-actions{min-height:38px;gap:6px;align-items:center}
+html[data-theme] .quick-actions>.subtle{opacity:.7;max-width:30%}
+html[data-theme] .tool-tabs button{padding:9px 5px!important;font-size:11px!important}
+html[data-theme] .stats .stat{cursor:pointer;transition:transform .15s ease,border-color .15s ease}
+html[data-theme] .stats .stat:hover{transform:translateY(-1px);border-color:var(--accent-color)!important}
+/* Layout responsively, not by introducing more controls. */
+@media(max-width:1150px){html[data-theme] .sidebar:not(.collapsed){width:134px!important;min-width:134px!important}.profile-more-menu{width:180px}html[data-theme] .tabs>#tabCurrent{max-width:33%}}
+@media(max-height:690px){html[data-theme] .foot-side{padding:5px!important}.session-help{display:none}.advanced-session-tools>small{display:none}}

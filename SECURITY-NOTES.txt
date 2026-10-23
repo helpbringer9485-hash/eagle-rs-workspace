@@ -1,0 +1,22 @@
+EAGLE RS WORKSPACE v3.7 — SECURITY LIMITS
+
+- The app uses validated main-process IPC, contextIsolation, sandboxing,
+  Node integration disabled, Windows secure storage and an encrypted local
+  account-configuration format. This is not a third-party security audit.
+- Electron safeStorage on Windows uses OS facilities (DPAPI). This is NOT
+  a guarantee of hardware-backed AES-256-GCM encryption for Chromium's
+  IndexedDB/Cookies/LocalStorage or third-party Signal data.
+- Password lock is access control against casual local access, not a
+  defense against malware executing under the same unlocked Windows account.
+- Use Windows BitLocker, device password, auto-updates and an encrypted backup.
+  Never store a BitLocker recovery key solely on the protected disk.
+- Signal profile-directory support is unofficial and may be ignored by Signal.
+  Do not sign into many Signal accounts until isolation is independently verified.
+- Messages and web sessions are controlled by their service providers. Their
+  auth/session revocations can require a new scan even with persistent storage.
+- Embedded service web pages are intentionally NOT themed by injected scripts/CSS.
+- Only configuration & theme preferences can be declared encrypted by the app.
+- These source files were tested with Node syntax, mocked OS encryption and
+  simulated Chromium interface events; the Windows installer must be tested.
+
+- New manual missed-call records and interface font IDs are stored in encrypted app configuration if Windows secure storage is available. The app does not scrape call history or message content.
