@@ -1,0 +1,21 @@
+/* Unit/regression tests: no background scraping or fake source promises. */
+'use strict';
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const {suggest,advance,summary,elapsed}=require('./call-activity');
+assert.equal(suggest('Missed voice call').outcome,'missed');
+assert.equal(suggest('Missed video call').kind,'video');
+assert.equal(suggest('Incoming call').outcome,'incoming');
+assert.equal(suggest('Outgoing audio call').outcome,'outgoing');
+assert.equal(suggest('You have a message').outcome,null);
+const saved={time:1000,outcome:'incoming',source:'manual'};
+const answer=advance(saved,'answered',7000);assert.equal(answer.answeredAt,7000);assert.equal(saved.outcome,'incoming');
+const ended=advance(answer,'ended',37000);assert.equal(elapsed(ended),'0m 30s');assert.equal(summary(ended),'Call ended');
+assert.throws(()=>advance(saved,'fabricated',2000));
+const main=fs.readFileSync('main.js','utf8'),html=fs.readFileSync('index.html','utf8'),r=fs.readFileSync('renderer.js','utf8');
+for(const id of ['callOutcome','callNoticeInput','interpretCallNotice','callNoticeFeedback','callFilterOutcome','openCallNotificationSettings'])assert.ok(html.includes('id="'+id+'"'),id);
+assert.match(main,/outcome:\['missed','incoming','answered','declined','outgoing','ended'\]/);
+assert.match(r,/callActivity\.advance\(/);
+assert.match(html,/user-confirmed records/i);
+assert.ok(!/document\.querySelector\([^)]*whatsapp|document\.querySelector\([^)]*telegram/i.test(require('./call-activity').suggest.toString()));
+console.log('EAGLE RS Smart Call Activity tests passed.');

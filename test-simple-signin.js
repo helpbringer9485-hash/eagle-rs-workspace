@@ -1,0 +1,67 @@
+'use strict';
+const assert=require('node:assert/strict');
+const fs=require('node:fs'),os=require('node:os'),path=require('node:path');
+const {createGoogleRecovery}=require('./google-recovery');
+const html=fs.readFileSync('index.html','utf8');
+const ui=fs.readFileSync('simple-signin.js','utf8');
+const main=fs.readFileSync('main.js','utf8');
+const pkg=require('./package.json');
+assert.equal(pkg.version,'3.25.0');
+assert.equal(pkg.build.appId,'com.eaglers.workspace');
+for(const id of ['simpleAuthCard','simpleAuthMicrosoft','simpleAuthGoogle','simpleLockMicrosoft','simpleLockGoogle','simpleLockBackup','simpleCompleteReset'])assert(ui.includes(`id="${id}"`),'Missing control '+id);
+assert(html.includes('simple-signin.css')&&html.includes('simple-signin.js'));
+assert(main.includes('security:google-begin')&&main.includes('security:google-reset'));
+assert(main.includes('persist:tg_session_')&&!main.includes('clearStorageData('));
+assert.equal(JSON.parse(fs.readFileSync('google-auth-config.json','utf8')).clientId,'','An unregistered Google OAuth application must not appear active');
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+async function until(check,ms=1500){const stop=Date.now()+ms;while(Date.now()<stop){const result=await check();if(result)return result;await sleep(20)}throw Error('Timed out waiting for OAuth verification result')}
+(async()=>{
+ const root=fs.mkdtempSync(path.join(os.tmpdir(),'eagle-v321-'));
+ const app={getPath:()=>root};let lastURL='';let profileSub='google-user-1';let resetCount=0,unlockCount=0;
+ const encryption={isEncryptionAvailable:()=>true,encryptString:s=>Buffer.from(s,'utf8'),decryptString:b=>b.toString('utf8')};
+ const realFetch=global.fetch;
+ global.fetch=async(url,opts)=>{
+  const u=String(url);
+  if(u.startsWith('https://oauth2.googleapis.com/token'))return {ok:true,json:async()=>({access_token:'test-access-token'})};
+  if(u.startsWith('https://openidconnect.googleapis.com/v1/userinfo'))return {ok:true,json:async()=>({sub:profileSub,email:'test@example.com',email_verified:true})};
+  return realFetch(url,opts);
+ };
+ try{
+  const common={app,safeStorage:encryption,shell:{openExternal:async url=>{lastURL=url}},requireUnlocked:()=>{},passwordMatches:async pass=>pass==='master-correct',resetPin:async next=>{resetCount++;return {ok:next.length>=8,codes:['TEST-RECOVERY-CODE']}},onVerifiedUnlock:async()=>{unlockCount++}};
+  const disabled=createGoogleRecovery({...common,configuredClientId:''});
+  assert.equal((await disabled.status()).available,false);
+  assert.equal((await disabled.begin('link','master-correct')).ok,false);
+  assert.equal(fs.readdirSync(root).length,0,'No fake account link or data should be created');
+  const google=createGoogleRecovery({...common,configuredClientId:'123456789000-eagle-test.apps.googleusercontent.com'});
+  assert.equal((await google.begin('link','wrong')).ok,false,'Require master passphrase before linking');
+  assert.equal((await google.begin('recover','')).ok,false,'Cannot recover until linked');
+  const link=await google.begin('link','master-correct');assert.equal(link.ok,true);
+  const authUrl=new URL(lastURL),redirect=authUrl.searchParams.get('redirect_uri'),state=authUrl.searchParams.get('state');
+  assert(authUrl.host==='accounts.google.com'&&redirect.startsWith('http://127.0.0.1:'));
+  assert.equal(new URL(redirect).pathname,'/callback');
+  let callback=await realFetch(`${redirect}?state=invalid&code=TEST`);assert.equal(callback.status,400,'Reject mismatched OAuth state');
+  callback=await realFetch(`${redirect}?state=${state}&code=GOOD`);assert.equal(callback.status,200);
+  await until(async()=>((await google.status()).flow?.phase==='verified'));
+  assert.equal((await google.status()).linked,true);
+  const wrong=await google.begin('recover','');assert.equal(wrong.ok,true);
+  profileSub='other-google-user';
+  const wr=new URL(lastURL);await realFetch(`${wr.searchParams.get('redirect_uri')}?state=${wr.searchParams.get('state')}&code=GOOD`);
+  await until(async()=>((await google.status()).flow?.phase==='failed'));
+  assert.equal((await google.reset('newpassword123')).ok,false,'An unlinked Google account must not authorize recovery');
+  assert.equal(resetCount,0);
+  profileSub='google-user-1';
+  const right=await google.begin('recover','');assert.equal(right.ok,true);
+  const good=new URL(lastURL);await realFetch(`${good.searchParams.get('redirect_uri')}?state=${good.searchParams.get('state')}&code=GOOD`);
+  await until(async()=>((await google.status()).flow?.phase==='verified'));
+  assert.equal((await google.reset('newpassword123')).ok,true);
+  assert.equal(resetCount,1);
+  assert.equal((await google.reset('newpassword123')).ok,false,'Recovery grant is one-time');
+  profileSub='another-user';assert.equal((await google.begin('unlock','')).ok,true);
+  let ua=new URL(lastURL);await realFetch(`${ua.searchParams.get('redirect_uri')}?state=${ua.searchParams.get('state')}&code=GOOD`);
+  await until(async()=>((await google.status()).flow?.phase==='failed'));assert.equal(unlockCount,0);
+  profileSub='google-user-1';assert.equal((await google.begin('unlock','')).ok,true);
+  ua=new URL(lastURL);await realFetch(`${ua.searchParams.get('redirect_uri')}?state=${ua.searchParams.get('state')}&code=GOOD`);
+  await until(async()=>((await google.status()).flow?.phase==='verified'));assert.equal(unlockCount,1);
+  console.log('Simple Sign-in v3.23: optional Google OAuth PKCE loopback, state validation, exact linked identity recovery, one-time reset grant, Microsoft preserved, no fake Google enrollment, and messaging partition invariants passed.');
+ }finally{global.fetch=realFetch;fs.rmSync(root,{force:true,recursive:true})}
+})().catch(e=>{console.error(e);process.exitCode=1});

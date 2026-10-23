@@ -1,0 +1,12 @@
+'use strict';
+const fs=require('node:fs');const assert=require('node:assert/strict');
+const html=fs.readFileSync('index.html','utf8'),css=fs.readFileSync('premium-refactor.css','utf8'),render=fs.readFileSync('renderer.js','utf8'),pack=require('./package.json');
+assert.equal(pack.version,'3.25.0');
+for(const id of ['overviewToggle','workspaceStats','profileMore','toggleWa','toggleTelegram','toggleSignal','geminiSidebar','toggleGemini','restoreWorkspace']) assert.ok(html.includes(`id="${id}"`),id);
+for(const id of ['profile-more-menu','more-dots','is-compact','density-compact','platform-group','premium-refactor.css']) assert.ok((html+css).includes(id),id);
+for(const item of ['installPremiumPreferences','overviewExpanded','interfaceDensity','profileMore','Control']) assert.ok((render+css).includes(item),item);
+assert.ok(/persist:mm3-/.test(render),'Legacy WhatsApp partition retained');
+assert.ok(/persist:tg_session_/.test(render),'Telegram partition retained');
+assert.ok(render.includes('activeSignalSlot'),'Signal routing retained');
+assert.ok(!html.includes('onclick='),'No inline JS click handlers');
+console.log('EAGLE RS 3.12 premium shell and legacy-partition checks passed');

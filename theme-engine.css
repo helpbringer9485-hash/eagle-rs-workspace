@@ -1,0 +1,322 @@
+/*
+ * EAGLE RS 2026 — Six-theme design token system.
+ * Scope: this application's chrome/UI only; Electron webview documents are
+ * separate sites and are never injected with app CSS.
+ * The stylesheet loads LAST, superseding old component-specific color rules.
+ */
+:root,
+html[data-theme="obsidian-gold"] {
+  color-scheme: dark;
+  --bg-main:#080A0F;
+  --bg-panel:#0F131D;
+  --bg-sidebar:#0B0F17;
+  --bg-elevated:#19202C;
+  --bg-input:#0C1019;
+  --border-color:rgba(212,175,55,.35);
+  --border-soft:rgba(212,175,55,.17);
+  --text-primary:#F8FAFC;
+  --text-secondary:#A8B2C2;
+  --text-accent:#E5C158;
+  --accent-color:#D4AF37;
+  --accent-gradient:linear-gradient(135deg,#FFF1B0 0%,#D4AF37 50%,#AA7C11 100%);
+  --accent-foreground:#181102;
+  --accent-glow:rgba(212,175,55,.25);
+  --accent-hover:rgba(212,175,55,.13);
+  --shadow-panel:0 16px 42px rgba(0,0,0,.36);
+  --glass-blur:blur(20px) saturate(180%);
+  --brand-ambient:radial-gradient(circle at 14% -8%,rgba(212,175,55,.10),transparent 52%);
+}
+html[data-theme="chatgpt-slate"] {
+  color-scheme:light;
+  --bg-main:#F8FAFC;
+  --bg-panel:#FFFFFF;
+  --bg-sidebar:#EFF3F5;
+  --bg-elevated:#E9EFF1;
+  --bg-input:#FFFFFF;
+  --border-color:rgba(0,0,0,.12);
+  --border-soft:rgba(0,0,0,.06);
+  --text-primary:#162324;
+  --text-secondary:#586975;
+  --text-accent:#097C61;
+  --accent-color:#10A37F;
+  --accent-gradient:linear-gradient(135deg,#2BCBA4 0%,#10A37F 55%,#08795E 100%);
+  --accent-foreground:#FFFFFF;
+  --accent-glow:rgba(16,163,127,.16);
+  --accent-hover:rgba(16,163,127,.09);
+  --shadow-panel:0 18px 36px rgba(15,23,42,.08);
+  --glass-blur:blur(20px) saturate(145%);
+  --brand-ambient:radial-gradient(circle at 12% 0%,rgba(16,163,127,.07),transparent 48%);
+}
+html[data-theme="pitch-black"] {
+  color-scheme:dark;
+  --bg-main:#000000;
+  --bg-panel:#0A0A0A;
+  --bg-sidebar:#050505;
+  --bg-elevated:#151515;
+  --bg-input:#080808;
+  --border-color:rgba(225,230,234,.27);
+  --border-soft:rgba(225,230,234,.13);
+  --text-primary:#F8FAFC;
+  --text-secondary:#A5ACB4;
+  --text-accent:#D3D7DC;
+  --accent-color:#D3D7DC;
+  --accent-gradient:linear-gradient(135deg,#F8FAFC,#D3D7DC 54%,#8E9AA9);
+  --accent-foreground:#080808;
+  --accent-glow:rgba(215,221,230,.08);
+  --accent-hover:rgba(255,255,255,.10);
+  --shadow-panel:0 12px 30px #000;
+  --glass-blur:blur(20px) saturate(120%);
+  --brand-ambient:none;
+}
+html[data-theme="titanium-silver"] {
+  color-scheme:light;
+  --bg-main:#E2E8F0;
+  --bg-panel:#F8FAFC;
+  --bg-sidebar:#DBE2EA;
+  --bg-elevated:#D5DFE9;
+  --bg-input:#FFFFFF;
+  --border-color:rgba(29,43,61,.22);
+  --border-soft:rgba(29,43,61,.12);
+  --text-primary:#0F172A;
+  --text-secondary:#475569;
+  --text-accent:#334155;
+  --accent-color:#526579;
+  --accent-gradient:linear-gradient(135deg,#F9FBFE 0%,#C0CAD4 42%,#8293A6 100%);
+  --accent-foreground:#111827;
+  --accent-glow:rgba(89,111,132,.19);
+  --accent-hover:rgba(68,85,110,.12);
+  --shadow-panel:0 16px 35px rgba(15,23,42,.10);
+  --glass-blur:blur(20px) saturate(150%);
+  --brand-ambient:radial-gradient(circle at 12% -12%,rgba(255,255,255,.75),transparent 45%);
+}
+html[data-theme="emerald-green"] {
+  color-scheme:dark;
+  --bg-main:#04120B;
+  --bg-panel:#081C10;
+  --bg-sidebar:#06180F;
+  --bg-elevated:#133324;
+  --bg-input:#06150E;
+  --border-color:rgba(16,185,129,.35);
+  --border-soft:rgba(16,185,129,.16);
+  --text-primary:#F4FFF8;
+  --text-secondary:#A1C9B8;
+  --text-accent:#46D6A1;
+  --accent-color:#10B981;
+  --accent-gradient:linear-gradient(135deg,#87F2C7 0%,#10B981 52%,#087A56 100%);
+  --accent-foreground:#03170D;
+  --accent-glow:rgba(16,185,129,.20);
+  --accent-hover:rgba(16,185,129,.13);
+  --shadow-panel:0 16px 40px rgba(0,0,0,.32);
+  --glass-blur:blur(20px) saturate(180%);
+  --brand-ambient:radial-gradient(circle at 12% -7%,rgba(16,185,129,.12),transparent 54%);
+}
+html[data-theme="royal-sapphire"] {
+  color-scheme:dark;
+  --bg-main:#070E1B;
+  --bg-panel:#0D1B2A;
+  --bg-sidebar:#0A1625;
+  --bg-elevated:#142D47;
+  --bg-input:#0B1826;
+  --border-color:rgba(44,107,237,.38);
+  --border-soft:rgba(44,107,237,.17);
+  --text-primary:#F8FAFC;
+  --text-secondary:#9BB2CF;
+  --text-accent:#8AABFF;
+  --accent-color:#2C6BED;
+  --accent-gradient:linear-gradient(135deg,#80B3FF 0%,#2C6BED 52%,#1949AE 100%);
+  --accent-foreground:#FFFFFF;
+  --accent-glow:rgba(44,107,237,.25);
+  --accent-hover:rgba(44,107,237,.14);
+  --shadow-panel:0 16px 40px rgba(0,0,0,.33);
+  --glass-blur:blur(20px) saturate(180%);
+  --brand-ambient:radial-gradient(circle at 14% -8%,rgba(44,107,237,.13),transparent 55%);
+}
+
+/* Backward-compatible UI tokens: older components bind to these names. */
+html[data-theme] {
+  --ui-canvas:var(--bg-main);
+  --ui-glass:var(--bg-panel);
+  --ui-solid:var(--bg-panel);
+  --ui-border:var(--border-color);
+  --ui-text:var(--text-primary);
+  --ui-muted:var(--text-secondary);
+  --ui-accent:var(--accent-color);
+  --ui-accent-glow:var(--accent-glow);
+  --ui-input:var(--bg-input);
+  --ui-hover:var(--accent-hover);
+  --ui-button:var(--bg-elevated);
+  --ui-side:var(--bg-sidebar);
+  --ui-title:var(--text-primary);
+  --bg:var(--bg-main);
+  --panel:var(--bg-panel);
+  --panel2:var(--bg-elevated);
+  --line:var(--border-color);
+  --gold:var(--text-accent);
+  --gold2:var(--accent-color);
+  --text:var(--text-primary);
+  --muted:var(--text-secondary);
+  background:var(--bg-main);
+}
+html[data-theme] body,html[data-theme] #app {
+  color:var(--text-primary)!important;
+  background:var(--brand-ambient),var(--bg-main)!important;
+}
+
+/* Full shell coverage — no legacy default gray/blue surfaces. */
+html[data-theme] :is(.masthead,.stats,.tabs,.quick-actions,.footer,.tool-tabs,.signal-dock,.stat-drawer-header,.main-profile-toolbar) {
+  background:var(--bg-panel)!important;
+  color:var(--text-primary)!important;
+  border-color:var(--border-soft)!important;
+  backdrop-filter:var(--glass-blur);
+}
+html[data-theme] :is(.sidebar,.right,.center,.foot-side,.platform-stack,#platformGroups,.workspace,.side-collapse-wrap,.panel-collapse-wrap) {
+  background:var(--bg-sidebar)!important;
+  color:var(--text-primary)!important;
+  border-color:var(--border-soft)!important;
+}
+html[data-theme] :is(.center,.right) {background:var(--bg-main)!important;}
+html[data-theme] :is(.view-container,.empty,.paused-placeholder,.view-loading,.view-crashed,.signal-profile-dashboard) {
+  background:var(--bg-main)!important;
+  color:var(--text-secondary)!important;
+}
+html[data-theme] :is(.stat,.platform-group,.alert-metric,.alert-group,.dialog,.account-dialog,.signal-controller,.pause-card,.template-card,.activity-entry,.output,.queue-summary,.alert-summary,.always-on-panel,.security-extension,.drive-row,.recovery-codes,.storage-details,.guidance-box,.panel-info,.lock-card,.stat-drawer,.unread-account-list,.reminder-row) {
+  color:var(--text-primary)!important;
+  background:var(--bg-panel)!important;
+  border:1px solid var(--border-soft)!important;
+  box-shadow:var(--shadow-panel);
+  backdrop-filter:var(--glass-blur);
+}
+html[data-theme] :is(.stat:hover,.stat:focus-visible,.platform-group:focus-within,.theme-option[aria-pressed="true"]) {
+  border-color:var(--border-color)!important;
+  box-shadow:0 0 20px var(--accent-glow)!important;
+}
+html[data-theme] :is(.account-row,.signal-row,.account-chip,.platform-account,.tab-chip,.group-trigger,.account-avatar,.telegram-avatar,.signal-avatar) {
+  background:transparent!important;
+  color:var(--text-primary)!important;
+  border-color:transparent!important;
+}
+html[data-theme] :is(.account-row.active,.signal-row.active,.tab-chip.active,.avatar-button.active,.platform-account.active) {
+  color:var(--text-primary)!important;
+  background:var(--accent-hover)!important;
+  border-color:var(--border-color)!important;
+  box-shadow:inset 0 -2px 0 var(--accent-color),0 0 18px var(--accent-glow)!important;
+}
+html[data-theme] :is(.account-row:hover,.signal-row:hover,.platform-account:hover,.tab-chip:hover,.group-trigger:hover){background:var(--accent-hover)!important;}
+html[data-theme] :is(.sidebar .side-header,.side-header span,.panel-kicker,.section-heading,.tool-panel h3,.dialog h2,.theme-toolbar,.template-title,.stat .symbol,.pill,.lock-card h2) {
+  color:var(--text-accent)!important;
+}
+html[data-theme] :is(.brand-words strong,.stat strong,.account-name,.signal-controller h2,.signal-controller strong,.dialog strong,.tool-panel strong,.lock-card strong){color:var(--text-primary)!important;}
+html[data-theme] :is(.brand-words small,.stat small,.foot-side p,.footer,.hint,.organize-tip,.signal-desc,.activity-entry small,.tool-panel p,.tool-panel label,.template-preview,.dialog p,.guidance-box,.muted,.subtle,.quick-actions .subtle,.account-status,.theme-subtitle,.lock-card p,.tool-panel small){color:var(--text-secondary)!important;}
+html[data-theme] :is(input,textarea,select,.output,.global-search,.quick-theme-select,.side-input,.search-box) {
+  color:var(--text-primary)!important;
+  background:var(--bg-input)!important;
+  border:1px solid var(--border-color)!important;
+  box-shadow:none!important;
+}
+html[data-theme] :is(input,textarea,select)::placeholder{color:var(--text-secondary)!important;opacity:.78;}
+html[data-theme] :is(input,textarea,select):focus-visible{outline:2px solid var(--accent-color)!important;outline-offset:1px;box-shadow:0 0 0 4px var(--accent-glow)!important;}
+html[data-theme] button:not(.wa-native):not(.signal-native),
+html[data-theme] .button,
+html[data-theme] .tab-chip {
+  color:var(--text-primary)!important;
+  background:var(--bg-elevated)!important;
+  border:1px solid var(--border-color)!important;
+  border-radius:8px;
+  transition:background .16s ease,box-shadow .16s ease,border-color .16s ease,transform .16s ease;
+}
+html[data-theme] button:not(:disabled):hover {background:var(--accent-hover)!important;border-color:var(--accent-color)!important;}
+html[data-theme] button:focus-visible{outline:2px solid var(--accent-color)!important;outline-offset:2px!important;}
+html[data-theme] button:disabled{opacity:.46!important;cursor:not-allowed;}
+html[data-theme] :is(button.gold,button.ai-primary,button.selected,#unlockNow,#createFirstPassphrase,.button-primary) {
+  color:var(--accent-foreground)!important;
+  background:var(--accent-gradient)!important;
+  border:1px solid var(--border-color)!important;
+  box-shadow:0 2px 12px var(--accent-glow)!important;
+  font-weight:750;
+}
+html[data-theme] :is(button.gold,button.ai-primary,#unlockNow,#createFirstPassphrase):hover:not(:disabled){filter:brightness(1.05);box-shadow:0 0 20px var(--accent-glow)!important;background:var(--accent-gradient)!important;}
+html[data-theme] :is(.tool-tabs button.selected,.tab-chip.active,.quick-actions button.selected,.tab-chip[aria-selected="true"]) {
+  color:var(--text-accent)!important;
+  background:var(--accent-hover)!important;
+  border:1px solid var(--accent-color)!important;
+}
+html[data-theme] :is(.brand-logo,.gemini-logo,.lock-card img,.shield-mark,.signal-dock img){
+  box-shadow:0 0 20px var(--accent-glow)!important;
+  border-color:var(--border-color)!important;
+}
+html[data-theme] :is(.pill,.theme-status,.reply-stat,.alert-summary,.queue-summary) {border-color:var(--border-color)!important;}
+html[data-theme] :is(a,.linklike,.reminder-row.due,.theme-status,.always-on-desc){color:var(--text-accent)!important;}
+html[data-theme] .overlay,html[data-theme] .lock-overlay{background:rgba(0,0,0,.78)!important;backdrop-filter:blur(14px)!important;}
+html[data-theme] .lock-card,html[data-theme] .dialog {box-shadow:0 22px 75px rgba(0,0,0,.3),0 0 24px var(--accent-glow)!important;}
+html[data-theme] .workspace-is-locked #views{visibility:hidden!important;pointer-events:none!important;}
+html[data-theme] .toast {background:var(--bg-elevated)!important;border:1px solid var(--border-color)!important;color:var(--text-primary)!important;box-shadow:var(--shadow-panel)!important;}
+html[data-theme] .theme-option{background:var(--bg-panel)!important;border-color:var(--border-soft)!important;box-shadow:none!important;}
+html[data-theme] .theme-option[aria-pressed="true"]{border-color:var(--accent-color)!important;box-shadow:0 0 0 1px var(--accent-color),0 0 20px var(--accent-glow)!important;}
+html[data-theme] :is(.theme-name,.theme-toolbar){color:var(--text-primary)!important;}
+html[data-theme] .theme-tick{color:var(--accent-color)!important;}
+html[data-theme] :is(.footer,.foot-side,.masthead){box-shadow:none!important;}
+html[data-theme] .masthead{border-bottom:1px solid var(--border-color)!important;}
+html[data-theme] :is(.stats,.quick-actions,.tabs){border-bottom:1px solid var(--border-soft)!important;}
+html[data-theme] :is(.sidebar,.right){border-color:var(--border-color)!important;}
+html[data-theme] :is(.tool-panel,.platform-stack,.account-list){scrollbar-color:var(--border-color) transparent;}
+html[data-theme] ::-webkit-scrollbar-track{background:var(--bg-sidebar)!important;}
+html[data-theme] ::-webkit-scrollbar-thumb{background:var(--bg-elevated)!important;border:2px solid var(--bg-sidebar)!important;}
+html[data-theme="obsidian-gold"] :is(.brand-words strong,.side-header,.dialog h2,.panel-kicker,.stat .symbol){color:#E5C158!important;}
+html[data-theme="obsidian-gold"] :is(button.gold,button.ai-primary,#unlockNow,#createFirstPassphrase){background:linear-gradient(135deg,#FFF1B0 0%,#D4AF37 50%,#AA7C11 100%)!important;box-shadow:0 0 20px rgba(212,175,55,.25)!important;}
+html[data-theme="chatgpt-slate"] :is(.quick-theme-select,.dialog,.stat,.platform-group,.lock-card,.tool-panel,.tool-tabs){color-scheme:light;}
+html[data-theme="titanium-silver"] :is(.quick-theme-select,.dialog,.stat,.platform-group,.lock-card,.tool-panel,.tool-tabs){color-scheme:light;}
+
+/* Consistent layout polish, without changing browser-owned WhatsApp/Telegram pages. */
+html[data-theme] .stat {min-height:64px;border-radius:12px;}
+html[data-theme] .masthead{height:76px;min-height:76px;}
+html[data-theme] .brand-logo{border-radius:12px;}
+html[data-theme] .tool-tabs{padding:10px;}
+html[data-theme] .tool-panel{background:transparent!important;}
+html[data-theme] .sidebar .account-list{background:transparent!important;}
+html[data-theme] .view-container webview{background:transparent;}
+html[data-theme] .dialog-actions{position:relative;}
+html[data-theme] .theme-swatch{border-color:var(--border-soft)!important;}
+html[data-theme] .footer{border-top:1px solid var(--border-soft)!important;}
+@media(max-width:1240px){html[data-theme] .brand-words{min-width:205px}html[data-theme] .masthead{gap:9px;padding-inline:10px}html[data-theme] .right{width:310px;min-width:285px}}
+@media(prefers-reduced-motion:reduce){html[data-theme] button{transition:none!important}}
+
+/* Legibility refinements for light suites and previously hard-coded green/white labels. */
+html[data-theme] :is(.always-on-title,.always-on-desc,.organize-tip,.panel-info,.theme-status,.tab-chip.active b,.account-avatar .avatar-label,.account-row.active .nm,.reply-stat small){color:var(--text-primary)!important;}
+html[data-theme] :is(.ai-divider,.guidance-box,.hint,.template-preview,.always-on-hint,.always-on-panel p){color:var(--text-secondary)!important;}
+html[data-theme="chatgpt-slate"] :is(.stat,.platform-group,.signal-controller,.dialog,.lock-card,.account-dialog,.template-card){box-shadow:0 6px 24px rgba(15,23,42,.08)!important;}
+html[data-theme="titanium-silver"] :is(.stat,.platform-group,.signal-controller,.dialog,.lock-card,.account-dialog,.template-card){box-shadow:0 6px 22px rgba(47,66,89,.12)!important;}
+
+/* EAGLE RS 3.7 — Human-entered missed calls and native-shell typography */
+:root{--workspace-font:'Segoe UI',Arial,sans-serif}
+html[data-theme] body,html[data-theme] #app,
+html[data-theme] #app :is(button,input,textarea,select,option,div,span,p,strong,small,label,h1,h2,h3,h4,section,article){font-family:var(--workspace-font)!important}
+/* Never inject styles into official WhatsApp, Telegram, or Signal interfaces. */
+html[data-theme] .stats{grid-template-columns:repeat(8,minmax(0,1fr));gap:7px}
+html[data-theme] .stats .stat{padding:9px 8px;gap:6px;min-width:0}
+html[data-theme] .stats .stat small{font-size:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+html[data-theme] .stats .stat strong{font-size:18px}
+html[data-theme] .missed-call-stat .symbol{color:#efbd7b!important}
+@media(max-width:1500px){html[data-theme] .stats{grid-template-columns:repeat(4,minmax(0,1fr))}html[data-theme] .stats .stat{min-height:54px}}
+@media(max-width:900px){html[data-theme] .stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+html[data-theme] .call-summary{background:var(--bg-elevated);border:1px solid var(--border-color);border-radius:10px;color:var(--text-primary);font-size:12px;font-weight:700;padding:12px;margin:13px 0}
+html[data-theme] .call-filters{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:7px;margin:12px 0}
+html[data-theme] .call-filters label{grid-row:1;font-size:11px}
+html[data-theme] .call-filters select{grid-row:2;min-width:0;width:100%}
+html[data-theme] .call-entry{background:var(--bg-panel);border:1px solid var(--border-soft);border-left:3px solid var(--text-accent);border-radius:12px;padding:12px;margin:10px 0;min-width:0;overflow-wrap:anywhere}
+html[data-theme] .call-entry.platform-whatsapp{border-left-color:#10B981}
+html[data-theme] .call-entry.platform-signal{border-left-color:#2C6BED}
+html[data-theme] .call-entry.platform-telegram{border-left-color:#0088CC}
+html[data-theme] .call-entry-head{display:flex;justify-content:space-between;align-items:center;gap:8px;color:var(--text-primary);font-size:13px}
+html[data-theme] .call-entry small{display:block;color:var(--text-secondary);margin-top:5px;font-size:11px}
+html[data-theme] .call-entry p{font-size:12px;color:var(--text-secondary);margin:8px 0}
+html[data-theme] .call-status{border-radius:99px;padding:4px 7px;font-size:10px;white-space:nowrap;background:var(--bg-elevated);border:1px solid var(--border-color)}
+html[data-theme] .call-status.status-pending{color:#f7bf80}
+html[data-theme] .call-status.status-called-back{color:#10B981}
+html[data-theme] .call-entry-actions{display:flex;flex-wrap:wrap;gap:5px}
+html[data-theme] .call-entry-actions button{padding:6px 8px!important;font-size:11px!important}
+html[data-theme] .call-empty{padding:16px;text-align:center;border:1px dashed var(--border-color);border-radius:12px;color:var(--text-secondary)}
+html[data-theme] #callBadge:not(:empty){display:inline-flex;background:#C33B52;color:#fff;padding:1px 5px;border-radius:10px;font-size:10px;min-width:17px;align-items:center;justify-content:center}
+html[data-theme] .font-studio{border:1px solid var(--border-soft);border-radius:12px;background:var(--bg-panel);padding:14px;margin:14px 0}
+html[data-theme] .font-studio>label{font-size:14px;font-weight:700;display:block;color:var(--text-primary)}
+html[data-theme] .font-studio select{width:100%}
+html[data-theme] .font-preview{font-family:var(--workspace-font)!important;margin-top:10px;padding:12px;border-radius:9px;background:var(--bg-elevated);border:1px solid var(--border-color);font-size:15px;line-height:1.4;color:var(--text-primary)}

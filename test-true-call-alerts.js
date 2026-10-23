@@ -1,0 +1,22 @@
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs');
+const html=fs.readFileSync('index.html','utf8'),js=fs.readFileSync('renderer.js','utf8'),main=fs.readFileSync('main.js','utf8');
+for(const id of ['statMissedCalls','callAccount','checkProviderCalls','quickLogCurrentCall','prefProviderNotifications'])assert.ok(html.includes(`id="${id}"`),id);
+assert.match(html,/Call Activity · local notes/);
+assert.match(html,/Provider call history is not synced|Not synced with provider call history/);
+assert.match(js,/No saved call activity/);
+assert.match(js,/state\.prefs=\{desktop:\$\('prefDesktop'\)\.checked,providerNotifications/);
+assert.match(main,/allowProviderNotification\(permission,requestURL,expectedHost,providerNotificationsEnabled\)/);
+const {allowProviderNotification: allowed}=require('./notification-permissions');
+assert.equal(allowed('notifications','https://web.whatsapp.com/','web.whatsapp.com',true),true);
+assert.equal(allowed('notifications','https://web.telegram.org/a/','web.telegram.org',true),true);
+assert.equal(allowed('notifications','https://web.whatsapp.com','web.whatsapp.com',false),false);
+assert.equal(allowed('notifications','https://web.whatsapp.com.attacker.com','web.whatsapp.com',true),false);
+assert.equal(allowed('notifications','http://web.whatsapp.com','web.whatsapp.com',true),false);
+assert.equal(allowed('media','https://web.whatsapp.com','web.whatsapp.com',true),false);
+assert.equal(allowed('notifications','https://web.signal.org','web.whatsapp.com',true),false);
+
+assert.doesNotMatch(main,/permission==='media'/);
+assert.doesNotMatch(html,/<small>Missed calls · to review<\/small>/);
+assert.doesNotMatch(main,/clearStorageData\(/);
+console.log('EAGLE RS true-call-alert regression checks passed (no fake call counts, opt-in official notifications only).');
